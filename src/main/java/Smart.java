@@ -107,7 +107,7 @@ public class Smart extends HttpServlet {
 	    } finally {
 	      
 	    }
-	}//
+	}////
 	private String DbToXML(ResultSet rs) throws SQLException
 	{
 		java.sql.ResultSetMetaData rsmd = rs.getMetaData();
