@@ -30,7 +30,7 @@ public class Smart extends HttpServlet {
 response.getWriter().println("HHHUj");
 		
 		response.addHeader("Access-Control-Allow-Origin", "*");//
-		response.addHeader("Access-Control-Allow-Methods", "POST,GET");//
+		response.addHeader("Access-Control-Allow-Methods", "POST,GET,OPTIONS");//
 		//response.addHeader("Access-Control-Allow-Methods", "GET,POST");//
 		response.addHeader("Access-Control-Allow-Headers", "*");//
 	    response.setHeader("Access-Control-Max-Age", "6000");
@@ -45,7 +45,7 @@ response.getWriter().println("HHHUj");
 		response.getWriter().println("HHHUj");
 		
 		response.addHeader("Access-Control-Allow-Origin", "*");//
-		response.addHeader("Access-Control-Allow-Methods", "POST,GET");//
+		response.addHeader("Access-Control-Allow-Methods", "POST,GET,OPTIONS");//
 		//response.addHeader("Access-Control-Allow-Methods", "GET,POST");//
 		response.addHeader("Access-Control-Allow-Headers", "*");//
 	    response.setHeader("Access-Control-Max-Age", "6000");
