@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Implementation-Title: Java Property Utility
+Implementation-Version: 1.9.1
+Built-By: vd
+Specification-Vendor: The Transaction Company
+Build-Tag: 1.9.1
+Created-By: Apache Maven 3.0.4
+Build-Date: 20131126.093226.106
+Implementation-Vendor: The Transaction Company
+Build-Number: 57426847377bab546ac5ca5b55f0301a9445fd35
+Implementation-Vendor-Id: com.thetransactioncompany
+Build-Jdk: 1.7.0_25
+Specification-Title: Java Property Utility
+Specification-Version: 1.9.1
+Archiver-Version: Plexus Archiver
+
