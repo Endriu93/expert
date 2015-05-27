@@ -132,7 +132,7 @@ public class Smart extends HttpServlet {
 			for(int i=0; i< ColNum; ++i)
 			{
 				Element tmp = new Element(ColNames[i]);
-				CDATA tmp2 = new CDATA(rs.getString(i+1));
+				String tmp2 = new String(rs.getString(i+1));
 				tmp.addContent(tmp2);
 				phone.addContent(tmp);
 			}
