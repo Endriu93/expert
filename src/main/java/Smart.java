@@ -19,7 +19,6 @@ public class Smart extends HttpServlet {
      */
     public Smart() {
         super();
-        
         // TODO Auto-generated constructor stub
     }
 
@@ -27,9 +26,15 @@ public class Smart extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub//
-		response.getWriter().println("ooooooooooooooooo");
-	response.addHeader("Access-Control-Access-Origin", "*");
+		// TODO Auto-generated method stub
+response.getWriter().println("HHHUj");
+		
+		response.addHeader("Access-Control-Allow-Origin", "*");//
+		response.addHeader("Access-Control-Allow-Methods", "POST,GET");//
+		//response.addHeader("Access-Control-Allow-Methods", "GET,POST");//
+		response.addHeader("Access-Control-Allow-Headers", "*");//
+	    response.setHeader("Access-Control-Max-Age", "6000");
+	    response.setHeader("Access-Control-Allow-Credentials", "true");		
 	}
 
 	/**
@@ -37,10 +42,14 @@ public class Smart extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().println("ooooooooooooooooo");
-
-	response.addHeader("Access-Control-Access-Origin", "*");
-
+		response.getWriter().println("HHHUj");
+		
+		response.addHeader("Access-Control-Allow-Origin", "*");//
+		response.addHeader("Access-Control-Allow-Methods", "POST,GET");//
+		//response.addHeader("Access-Control-Allow-Methods", "GET,POST");//
+		response.addHeader("Access-Control-Allow-Headers", "*");//
+	    response.setHeader("Access-Control-Max-Age", "6000");
+	    response.setHeader("Access-Control-Allow-Credentials", "true");
 
 
 	}
