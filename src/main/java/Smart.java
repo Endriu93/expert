@@ -76,7 +76,7 @@ public class Smart extends HttpServlet {
 	    
 	      // This will load the MySQL driver, each DB has its own driver
 	      Class.forName("com.mysql.jdbc.Driver");
-	      connect = DriverManager.getConnection("jdbc:mysql://127.13.19.130:/expert","admincsPQAMd","KRjPCPMwYSY8");
+	      connect = DriverManager.getConnection("jdbc:mysql://127.13.19.130:3306/expert","admincsPQAMd","KRjPCPMwYSY8");
 	      statement = connect.createStatement();
  	      resultSet = statement.executeQuery("select * from telefony");
 	      
