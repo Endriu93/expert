@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.ResultSetMetaData;
 
-import org.jdom2.*;
+import org.jdom2.*;//
 import org.jdom2.output.XMLOutputter;
 /**
  * Servlet implementation class Smart
