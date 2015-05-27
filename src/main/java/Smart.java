@@ -43,13 +43,13 @@ response.getWriter().println("HHHUj");
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().println("HHHUj");
-		
+		/*
 		response.addHeader("Access-Control-Allow-Origin", "null");//
 		response.addHeader("Access-Control-Allow-Methods", "POST,GET,OPTIONS");//
 		//response.addHeader("Access-Control-Allow-Methods", "GET,POST");//
 		response.addHeader("Access-Control-Allow-Headers", "*");//
 	    response.setHeader("Access-Control-Max-Age", "6000");
-	    response.setHeader("Access-Control-Allow-Credentials", "false");
+	    response.setHeader("Access-Control-Allow-Credentials", "false");*/
 
 
 	}
