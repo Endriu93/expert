@@ -92,6 +92,7 @@ public class Smart extends HttpServlet {
 	      // Result set get the result of the SQL query
 	      resultSet = statement.executeQuery("select * from telefony");
 	          
+	      resultSet.next();
 	     return resultSet.getString(1);
 	      
 	      
