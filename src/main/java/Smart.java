@@ -93,7 +93,7 @@ public class Smart extends HttpServlet {
 	      resultSet = statement.executeQuery("select * from telefony");
 	          
 	      resultSet.next();
-	     return resultSet.getString(1);
+	     return resultSet.getSQLXML(1).getString();
 	      
 	      
 	    } catch (Exception e) {
