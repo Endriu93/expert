@@ -24,12 +24,17 @@ public class Smart extends HttpServlet {
 	  private Statement statement = null;
 	  private java.sql.PreparedStatement preparedStatement = null;
 	  private ResultSet resultSet = null;
+	  
+	  String Host;
+	  String Port;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public Smart() {
         super();
+    	Host = System.getenv("$OPENSHIFT_MYSQL_DB_HOST");
+        Port = System.getenv("$OPENSHIFT_MYSQL_DB_PORT");
         // TODO Auto-generated constructor stub
     }
 
@@ -39,8 +44,13 @@ public class Smart extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().println("Baza");
+	
 		try {
 			response.getWriter().println(readDataBase());
+			response.getWriter().println(Host);
+			response.getWriter().println(Port);
+
+			
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -56,6 +66,8 @@ public class Smart extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().println("Baza");
+		response.getWriter().println(Host);
+		response.getWriter().println(Port);
 		try {
 			response.getWriter().println(readDataBase());
 			
@@ -70,8 +82,10 @@ public class Smart extends HttpServlet {
 	    try {
 	      // This will load the MySQL driver, each DB has its own driver
 	      Class.forName("com.mysql.jdbc.Driver");
-	      // Setup the connection with the DB
-	      connect = DriverManager.getConnection("mysql://$OPENSHIFT_MYSQL_DB_HOST:$OPENSHIFT_MYSQL_DB_PORT/expert","admincsPQAMd","KRjPCPMwYSY8");
+	      String $OPENSHIFT_MYSQL_DB_PORT = Port ;
+		String $OPENSHIFT_MYSQL_DB_HOST = Host;
+		// Setup the connection with the DB
+	      connect = DriverManager.getConnection("jdbc:mysql://"+$OPENSHIFT_MYSQL_DB_HOST+":"+$OPENSHIFT_MYSQL_DB_PORT+"/expert","admincsPQAMd","KRjPCPMwYSY8");
 
 	      // Statements allow to issue SQL queries to the database
 	      statement = connect.createStatement();
