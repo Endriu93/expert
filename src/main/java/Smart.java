@@ -82,10 +82,10 @@ public class Smart extends HttpServlet {
 	    try {
 	      // This will load the MySQL driver, each DB has its own driver
 	      Class.forName("com.mysql.jdbc.Driver");
-	      String $OPENSHIFT_MYSQL_DB_PORT = Port ;
+	      String $OPENSHIFT_MYSQL_DB_PORT = "3306" ;
 		String $OPENSHIFT_MYSQL_DB_HOST = Host;
 		// Setup the connection with the DB
-	      connect = DriverManager.getConnection("jdbc:mysql://"+$OPENSHIFT_MYSQL_DB_HOST+":"+$OPENSHIFT_MYSQL_DB_PORT+"/expert","admincsPQAMd","KRjPCPMwYSY8");
+	      connect = DriverManager.getConnection("jdbc:mysql://127.13.19.130:"+$OPENSHIFT_MYSQL_DB_PORT+"/expert","admincsPQAMd","KRjPCPMwYSY8");
 
 	      // Statements allow to issue SQL queries to the database
 	      statement = connect.createStatement();
