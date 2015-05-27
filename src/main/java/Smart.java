@@ -38,7 +38,14 @@ public class Smart extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-response.getWriter().println("HHHUj");
+		response.getWriter().println("Baza");
+		try {
+			response.getWriter().println(readDataBase());
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			response.getWriter().println(e.getMessage());
+		}
 		
 			
 	}
@@ -48,13 +55,13 @@ response.getWriter().println("HHHUj");
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().println("HHHUj");
+		response.getWriter().println("Baza");
 		try {
 			response.getWriter().println(readDataBase());
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			response.getWriter().println(e.getMessage());
 		}
 
 
