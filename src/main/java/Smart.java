@@ -17,6 +17,7 @@ import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.ResultSetMetaData;
 
 import org.jdom2.*;
+import org.jdom2.output.XMLOutputter;
 /**
  * Servlet implementation class Smart
  */
@@ -135,7 +136,9 @@ public class Smart extends HttpServlet {
 			}
 			Root.addContent(phone);
 		}
-		return root.toString();
+		XMLOutputter out = new XMLOutputter();
+		
+		return out.outputString(root);
 	}
 	
 
