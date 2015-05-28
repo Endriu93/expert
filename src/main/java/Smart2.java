@@ -131,7 +131,7 @@ public class Smart2 extends HttpServlet {
 			{
 				if(Value.equals("1"))
 				out = " Wifi like  'YES' ";
-				else if(Value.equals("0")) out = " Wifi like 'NO' ";
+				//else if(Value.equals("0")) out = " Wifi like 'NO' ";
 				else out = " Cores > 0 ";
 			}
 			else
@@ -160,7 +160,7 @@ public class Smart2 extends HttpServlet {
 							{
 								if(Value.equals("1"))
 									out = " LTE like  'YES' ";
-									else if(Value.equals("0")) out = " LTE like 'NO' ";
+					//				else if(Value.equals("0")) out = " LTE like 'NO' ";
 									else out = " Cores > 0 ";
 							}
 							else
@@ -168,14 +168,14 @@ public class Smart2 extends HttpServlet {
 								{
 									if(Value.equals("1"))
 										out = " SD like  'YES' ";
-										else if(Value.equals("0")) out = " SD like 'NO' ";
+						//				else if(Value.equals("0")) out = " SD like 'NO' ";
 										else out = " Cores > 0 ";
 								}else
 									if(ParamName.equals("gps"))
 									{
 										if(Value.equals("1"))
 											out = " GPS like  'YES' ";
-											else if(Value.equals("0")) out = " GPS like 'NO' ";
+							//				else if(Value.equals("0")) out = " GPS like 'NO' ";
 											else out = " Cores > 0 ";
 									}
 		else out = " Cores > 0 ";
