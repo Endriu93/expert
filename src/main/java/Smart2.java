@@ -113,7 +113,40 @@ public class Smart2 extends HttpServlet {
 		else
 		if(ParamName.equals("batterysize")) out = " Battery > "+Value; 
 		else
-		if(ParamName.equals("minproc")) out = "Processor > "+Value; 
+		if(ParamName.equals("minproc")) out = " Processor > "+Value;
+		else
+			if(ParamName.equals("mincoresnum")) out = " Cores > "+Value;
+		else
+			if(ParamName.equals("camera")) out = " Camera_Res > "+Value;
+		else
+			if(ParamName.equals("wifi"))
+			{
+				if(Value.equals("1"))
+				out = " Wifi like  YES ";
+				else if(Value.equals("0")) out = " Wifi like NO ";
+				else out = " Cores > 0 ";
+			}
+			else
+				if(ParamName.equals("android"))
+				{
+					if(Value.equals("1"))
+					out = " OS_Name like  Android ";
+					else out = " Cores > 0 ";
+				}
+				else
+					if(ParamName.equals("windowsphone"))
+					{
+						if(Value.equals("1"))
+						out = " OS_Name like  W%s ";
+						else out = " Cores > 0 ";
+					}
+					else
+						if(ParamName.equals("ios"))
+						{
+							if(Value.equals("1"))
+							out = " OS_Name like  iOS ";
+							else out = " Cores > 0 ";
+						}
 		else out = " Cores > 0 ";
 		
 		
