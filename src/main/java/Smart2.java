@@ -1,13 +1,23 @@
 
 
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.input.SAXBuilder;
 
 /**
  * Servlet implementation class Smart2
@@ -37,15 +47,77 @@ public class Smart2 extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String query = "select * from Phones where cores > 3";
+		String content = getRequestContent(request);
+		
 		try {
+			String query = createQueryFromXml(content);
+			response.getWriter().println(query);
 			response.getWriter().println(db.getSpecifiedPhones(query));
 			
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			response.getWriter().println(e.getMessage());
 		}
 	}
-
+	private String getRequestContent(HttpServletRequest request) throws IOException
+	{
+		String line;
+		StringBuilder jb = new StringBuilder();
+		  BufferedReader reader = request.getReader();
+		  while ((line = reader.readLine()) != null)
+	      jb.append(line);
+		  
+		return jb.toString();
+	}
+	private String createQueryFromXml(String xml) throws JDOMException, IOException
+	{
+		SAXBuilder builder = new SAXBuilder();
+		Map<String,String> mapa = new HashMap<String,String>();
+		String ParamName;
+		String value;
+		StringBuilder b = new StringBuilder();
+		b.append("select * from Phones where ");
+		String query;
+		
+	 
+		  
+	 
+			Document document = (Document) builder.build(xml);
+			Element rootNode = document.getRootElement();
+			List list = rootNode.getChildren();
+	 
+			for (int i = 0; i < list.size(); i++) {
+				if(i!= 0) b.append(" and ");
+			   Element node = (Element) list.get(i);
+			   ParamName = node.getName();
+			   value = node.getText();
+			   query = addToQuery(ParamName, value);
+			    b.append(query);
+			 
+	 
+			}
+			return b.toString();
+	 
+		 
+	}
+	private String addToQuery(String ParamName, String Value)
+	{
+		String out;
+		switch(ParamName)
+		{
+		case "minscreensize" : out = " Display > "+Value; 
+								break;
+		case "maxscreensize" : out = " Display < "+Value; 
+		break;
+		case "batterysize" : out = " Battery > "+Value; 
+		break;
+		case "minproc" : out = "Processor > "+Value; 
+		break;
+		default : out = "";
+		break;
+		}
+		
+		return out;
+	}
 }
