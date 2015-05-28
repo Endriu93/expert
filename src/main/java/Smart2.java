@@ -1,8 +1,10 @@
 
 
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
@@ -81,9 +83,9 @@ public class Smart2 extends HttpServlet {
 		String query;
 		
 	 
-		  
+		InputStream stream = new ByteArrayInputStream(xml.getBytes("UTF-8"));
+		Document document = builder.build(stream);
 	 
-			Document document = (Document) builder.build(xml);
 			Element rootNode = document.getRootElement();
 			List list = rootNode.getChildren();
 	 
