@@ -36,7 +36,7 @@ public class Database {
 	   
 	      statement = connect.createStatement();
 	      resultSet = statement.executeQuery("select * from Phones");
-	      connect.close();
+	      
 	      return DbToXML(resultSet);
 	      
 	}
@@ -44,7 +44,7 @@ public class Database {
 	{
 		  statement = connect.createStatement();
 	      resultSet = statement.executeQuery(query);
-	      connect.close();
+	      
 	      return DbToXML(resultSet);
 	}
 	private String DbToXML(ResultSet rs) throws SQLException
