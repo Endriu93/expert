@@ -122,7 +122,7 @@ public class Smart2 extends HttpServlet {
 			if(ParamName.equals("wifi"))
 			{
 				if(Value.equals("1"))
-				out = " Wifi like  YES ";
+				out = " Wifi like  'YES' ";
 				else if(Value.equals("0")) out = " Wifi like 'NO' ";
 				else out = " Cores > 0 ";
 			}
