@@ -78,7 +78,7 @@ public class Smart extends HttpServlet {
 	      Class.forName("com.mysql.jdbc.Driver");
 	      connect = DriverManager.getConnection("jdbc:mysql://127.13.19.130:3306/expert","admincsPQAMd","KRjPCPMwYSY8");
 	      statement = connect.createStatement();
- 	      resultSet = statement.executeQuery("select * from telefony");
+ 	      resultSet = statement.executeQuery("select * from Phones");
 	      
 	      return DbToXML(resultSet);
 	      
