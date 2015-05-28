@@ -37,7 +37,7 @@ public class Smart2 extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String query = "select * from Phones";
+		String query = "select * from Phones where cores > 3";
 		try {
 			response.getWriter().println(db.getSpecifiedPhones(query));
 			
