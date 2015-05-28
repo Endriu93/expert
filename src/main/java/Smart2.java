@@ -104,19 +104,17 @@ public class Smart2 extends HttpServlet {
 	private String addToQuery(String ParamName, String Value)
 	{
 		String out;
-		switch(ParamName)
-		{
-		case "minscreensize" : out = " Display > "+Value; 
-								break;
-		case "maxscreensize" : out = " Display < "+Value; 
-		break;
-		case "batterysize" : out = " Battery > "+Value; 
-		break;
-		case "minproc" : out = "Processor > "+Value; 
-		break;
-		default : out = "";
-		break;
-		}
+		
+		if(ParamName.equals("minscreensize")) out = " Display > "+Value; 
+		else
+		if(ParamName.equals("maxscreensize")) out = " Display < "+Value; 
+		else
+		if(ParamName.equals("batterysize")) out = " Battery > "+Value; 
+		else
+		if(ParamName.equals("minproc")) out = "Processor > "+Value; 
+		else out = " ";
+		
+		
 		
 		return out;
 	}
