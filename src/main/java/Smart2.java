@@ -80,7 +80,7 @@ public class Smart2 extends HttpServlet {
 		String value;
 		StringBuilder b = new StringBuilder();
 		b.append("select * from Phones where ");
-		String query;
+		String query = " ";
 		
 	 
 		InputStream stream = new ByteArrayInputStream(xml.getBytes("UTF-8"));
@@ -114,7 +114,7 @@ public class Smart2 extends HttpServlet {
 		if(ParamName.equals("batterysize")) out = " Battery > "+Value; 
 		else
 		if(ParamName.equals("minproc")) out = "Processor > "+Value; 
-		else out = " ";
+		else out = " Cores > 0 ";
 		
 		
 		
