@@ -109,6 +109,14 @@ public class Smart2 extends HttpServlet {
 		
 		if(ParamName.equals("minscreensize")) out = " Display > "+Value; 
 		else
+			if(ParamName.equals("minprice")) out = " Price > "+Value; 
+			else
+				if(ParamName.equals("maxprice")) out = " Price < "+Value; 
+				else
+					if(ParamName.equals("ram")) out = " Ram > "+Value; 
+					else
+						if(ParamName.equals("storage")) out = " Storage > "+Value; 
+						else
 		if(ParamName.equals("maxscreensize")) out = " Display < "+Value; 
 		else
 		if(ParamName.equals("batterysize")) out = " Battery > "+Value; 
@@ -147,6 +155,29 @@ public class Smart2 extends HttpServlet {
 							out = " OS_Name like  'iOS' ";
 							else out = " Cores > 0 ";
 						}
+						else
+							if(ParamName.equals("lte"))
+							{
+								if(Value.equals("1"))
+									out = " LTE like  'YES' ";
+									else if(Value.equals("0")) out = " LTE like 'NO' ";
+									else out = " Cores > 0 ";
+							}
+							else
+								if(ParamName.equals("sd"))
+								{
+									if(Value.equals("1"))
+										out = " SD like  'YES' ";
+										else if(Value.equals("0")) out = " SD like 'NO' ";
+										else out = " Cores > 0 ";
+								}else
+									if(ParamName.equals("gps"))
+									{
+										if(Value.equals("1"))
+											out = " GPS like  'YES' ";
+											else if(Value.equals("0")) out = " GPS like 'NO' ";
+											else out = " Cores > 0 ";
+									}
 		else out = " Cores > 0 ";
 		
 		
