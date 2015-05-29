@@ -100,7 +100,7 @@ public class Smart2 extends HttpServlet {
 				// it po telefonach
 			   Element phone = (Element) phones.get(i);
 			   parameters = phone.getChildren();
-			   ID = Integer.parseInt(phone.getChild("ID").getText());
+			   ID = Integer.parseInt(phone.getChildText("ID"));
 			   
 			   for(Element param: parameters)
 			   {	// it po parametrach
