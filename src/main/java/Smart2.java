@@ -59,7 +59,7 @@ public class Smart2 extends HttpServlet {
 			if(db.connect == null) db.connect();
 			String query = createQueryFromXml(content);
 			String phonesXml = db.getSpecifiedPhones(query);
-			response.getWriter().println(phonesXml); //REMOVE
+			//response.getWriter().println(phonesXml); //REMOVE
 
 			ArrayList<String> criteria = getCriteria(content);
 			response.getWriter().println(criteria.toString()); //REMOVE
@@ -199,13 +199,13 @@ public class Smart2 extends HttpServlet {
 	private String addIDsToQuery(String query, ArrayList<String> ids)
 	{
 		StringBuilder b = new StringBuilder();
-		b.append(" and ");
+		b.append(" and ID in (");
 		for(String id : ids)
 		{
-			b.append(" ID = "+id);
-			b.append(" or ");
+			b.append(id);
+			b.append(", ");
 		}
-		b.append(" Cores > 0 ");
+		b.append("10000 )");
 		return query+b.toString();
 	}
 	private String createQueryFromXml(String xml) throws JDOMException, IOException
