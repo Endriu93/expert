@@ -58,10 +58,13 @@ public class Smart2 extends HttpServlet {
 			if(db.connect == null) db.connect();
 			String query = createQueryFromXml(content);
 			String phonesXml = db.getSpecifiedPhones(query);
+			response.getWriter().println(phonesXml);
+
 			ArrayList<String> criteria = getCriteria(content);
 			ArrayList<String> Ids = getPhonesID(phonesXml, criteria);
 			String FinalQuery = addIDsToQuery(query,Ids);
-			response.getWriter().println(FinalQuery);
+			response.getWriter().println(FinalQuery); // REMOVE
+			response.getWriter().println(criteria.toString());
 			response.getWriter().println(db.getSpecifiedPhones(FinalQuery));
 			db.close();
 			
