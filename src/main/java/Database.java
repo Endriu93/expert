@@ -87,7 +87,7 @@ public class Database {
 		}
 		XMLOutputter out = new XMLOutputter();
 		
-		out.setFormat(Format.getPrettyFormat());
+		//out.setFormat(Format.getPrettyFormat());
 		
 		return out.outputString(root);
 		
