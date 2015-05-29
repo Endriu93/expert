@@ -1,20 +1,20 @@
 
 public class Calculator {
 
-	public static float DisplayMin;
-	public static float DisplayMax;
-	public static float CoresMin;
-	public static float CoresMax;
-	public static float ProcessorMin;
-	public static float ProcessorMax;
-	public static float CameraMin;
-	public static float CameraMax;
-	public static float BatteryMin;
-	public static float BatteryMax;
-	public static float RamMin;
-	public static float RamMax;
-	public static float StorageMin;
-	public static float StorageMax;
+	public static float DisplayMin=100;
+	public static float DisplayMax=0;
+	public static float CoresMin=10;
+	public static float CoresMax=0;
+	public static float ProcessorMin=100000;
+	public static float ProcessorMax=0;
+	public static float CameraMin=100;
+	public static float CameraMax=0;
+	public static float BatteryMin=10000;
+	public static float BatteryMax=0;
+	public static float RamMin=100;
+	public static float RamMax=0;
+	public static float StorageMin=10000;
+	public static float StorageMax=0;
 	
 	//public int Coeficient=100;	// współczynnik
 	public static float displayPoints(float num)

@@ -100,7 +100,8 @@ public class Smart2 extends HttpServlet {
 			Element rootNode = document.getRootElement();
 			List<Element> phones = rootNode.getChildren();
 			List<Element> parameters;
-	 
+			ArrayList<String> AllAvailableCriteria = new ArrayList<String>(); // dostępne kryteria
+			// zbieranie MinMax do kalkulatora
 			for (int i = 0; i < phones.size(); i++) {
 				// it po telefonach
 			   Element phone = (Element) phones.get(i);
@@ -112,6 +113,70 @@ public class Smart2 extends HttpServlet {
 			   for(Element param: parameters)
 			   {	// it po parametrach
 				   ParamName = param.getName();
+				  
+				   if(criteria.contains(ParamName))
+				   {
+					   value = Float.parseFloat(param.getText());
+
+					   if(ParamName.equals("Display")) 
+						   {
+						   	Calculator.DisplayMin = (value<Calculator.DisplayMin ? value : Calculator.DisplayMin);
+						   	Calculator.DisplayMax = (value>Calculator.DisplayMax ? value : Calculator.DisplayMax);
+
+						   }
+					   else
+						   if(ParamName.equals("Battery")) 
+						   {
+						   	Calculator.BatteryMin = (value<Calculator.BatteryMin ? value : Calculator.BatteryMin);
+						   	Calculator.BatteryMax = (value>Calculator.BatteryMax ? value : Calculator.BatteryMax);
+
+						   }						   else
+							   if(ParamName.equals("Cores")) 
+							   {
+							   	Calculator.CoresMin = (value<Calculator.CoresMin ? value : Calculator.CoresMin);
+							   	Calculator.CoresMax = (value>Calculator.CoresMax ? value : Calculator.CoresMax);
+
+							   }else
+								   if(ParamName.equals("Processor")) 
+								   {
+								   	Calculator.ProcessorMin = (value<Calculator.ProcessorMin ? value : Calculator.ProcessorMin);
+								   	Calculator.ProcessorMax = (value>Calculator.ProcessorMax ? value : Calculator.ProcessorMax);
+
+								   }								   else
+									   if(ParamName.equals("Ram")) 
+									   {
+									   	Calculator.RamMin = (value<Calculator.RamMin ? value : Calculator.RamMin);
+									   	Calculator.RamMax = (value>Calculator.RamMax ? value : Calculator.RamMax);
+
+									   }									   else
+										   if(ParamName.equals("Storage")) 
+										   {
+										   	Calculator.StorageMin = (value<Calculator.StorageMin ? value : Calculator.StorageMin);
+										   	Calculator.StorageMax = (value>Calculator.StorageMax ? value : Calculator.StorageMax);
+
+										   }										   else
+											   if(ParamName.equals("Camera_Res")) 
+											   {
+											   	Calculator.CameraMin = (value<Calculator.CameraMin ? value : Calculator.CameraMin);
+											   	Calculator.CameraMax = (value>Calculator.CameraMax ? value : Calculator.CameraMax);
+
+											   }
+				   }
+			   }
+			}   
+			// obliczanie współczynnika dla każdego phona
+			for (int i = 0; i < phones.size(); i++) {
+				// it po telefonach
+			   Element phone = (Element) phones.get(i);
+			   
+			   parameters = phone.getChildren();
+			 //  a.println(parameters.get(0).toString()+ " "+parameters.get(0).getText());
+			   ID = Integer.parseInt(parameters.get(0).getText());
+			   
+			   for(Element param: parameters)
+			   {	// it po parametrach
+				   ParamName = param.getName();
+				  
 				   if(criteria.contains(ParamName))
 				   {
 					   value = Float.parseFloat(param.getText());
@@ -129,6 +194,7 @@ public class Smart2 extends HttpServlet {
 				   }
 			   }
 			   phonesList.add(new Phone(ID, sum));
+			   a.println("id: "+String.valueOf(ID)+" sum:"+String.valueOf(sum));
 			   sum = 0;
 			   
 			}
@@ -141,7 +207,12 @@ public class Smart2 extends HttpServlet {
 			}
 			return ids;
 	}
+	private void setMinMaxCriteria( String xml)
+	{
+		
+	}
 	/**
+
 	 * zwraca tablicę kryteriów w postaci takiej jak w bazie
 	 * @throws IOException 
 	 * @throws JDOMException 
