@@ -106,15 +106,16 @@ public class Smart2 extends HttpServlet {
 			   Element phone = (Element) phones.get(i);
 			   
 			   parameters = phone.getChildren();
-			   a.println(parameters.get(0).toString()+ " "+parameters.get(0).getText());
+			 //  a.println(parameters.get(0).toString()+ " "+parameters.get(0).getText());
 			   ID = Integer.parseInt(parameters.get(0).getText());
 			   
 			   for(Element param: parameters)
 			   {	// it po parametrach
 				   ParamName = param.getName();
-				   value = Float.parseFloat(param.getText());
 				   if(criteria.contains(ParamName))
 				   {
+					   value = Float.parseFloat(param.getText());
+
 					   if(ParamName.equals("Display")) sum+= Calculator.displayPoints(value);
 					   else
 						   if(ParamName.equals("Battery")) sum+= Calculator.batteryPoints(value);
