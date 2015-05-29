@@ -108,26 +108,27 @@ public class Smart2 extends HttpServlet {
 	private String addToQuery(String ParamName, String Value)
 	{
 		String out;
-		
-		if(ParamName.equals("minscreensize")) out = " Display > "+Value; 
+		if(ParamName.equals("producent")) out = " Product_Name like "+Value; 
 		else
-			if(ParamName.equals("minprice")) out = " Price > "+Value; 
+		if(ParamName.equals("minscreensize")) out = " Display >= "+Value; 
+		else
+			if(ParamName.equals("minprice")) out = " Price >= "+Value; 
 			else
-				if(ParamName.equals("maxprice")) out = " Price < "+Value; 
+				if(ParamName.equals("maxprice")) out = " Price <= "+Value; 
 				else
-					if(ParamName.equals("ram")) out = " Ram > "+Value; 
+					if(ParamName.equals("ram")) out = " Ram >= "+Value; 
 					else
-						if(ParamName.equals("storage")) out = " Storage > "+Value; 
+						if(ParamName.equals("storage")) out = " Storage >= "+Value; 
 						else
-		if(ParamName.equals("maxscreensize")) out = " Display < "+Value; 
+		if(ParamName.equals("maxscreensize")) out = " Display <= "+Value; 
 		else
-		if(ParamName.equals("batterysize")) out = " Battery > "+Value; 
+		if(ParamName.equals("batterysize")) out = " Battery >= "+Value; 
 		else
-		if(ParamName.equals("minproc")) out = " Processor > "+Value;
+		if(ParamName.equals("minproc")) out = " Processor >= "+Value;
 		else
-			if(ParamName.equals("mincoresnum")) out = " Cores > "+Value;
+			if(ParamName.equals("mincoresnum")) out = " Cores >= "+Value;
 		else
-			if(ParamName.equals("camera")) out = " Camera_Res > "+Value;
+			if(ParamName.equals("camera")) out = " Camera_Res >= "+Value;
 		else
 			if(ParamName.equals("wifi"))
 			{
