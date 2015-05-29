@@ -5,6 +5,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -63,7 +64,7 @@ public class Smart2 extends HttpServlet {
 			ArrayList<String> criteria = getCriteria(content);
 			response.getWriter().println(criteria.toString()); //REMOVE
 
-			ArrayList<String> Ids = getPhonesID(phonesXml, criteria);
+			ArrayList<String> Ids = getPhonesID(phonesXml, criteria,response.getWriter());
 			String FinalQuery = addIDsToQuery(query,Ids);
 			response.getWriter().println(FinalQuery); 
 			response.getWriter().println(db.getSpecifiedPhones(FinalQuery));
@@ -83,7 +84,7 @@ public class Smart2 extends HttpServlet {
 	 * @throws IOException 
 	 * @throws JDOMException 
 	 */
-	private ArrayList<String> getPhonesID(String xml, ArrayList<String> criteria) throws JDOMException, IOException
+	private ArrayList<String> getPhonesID(String xml, ArrayList<String> criteria, PrintWriter a) throws JDOMException, IOException
 	{
 		SAXBuilder builder = new SAXBuilder();
 		String ParamName;
@@ -103,8 +104,10 @@ public class Smart2 extends HttpServlet {
 			for (int i = 0; i < phones.size(); i++) {
 				// it po telefonach
 			   Element phone = (Element) phones.get(i);
+			   
 			   parameters = phone.getChildren();
-			   ID = Integer.parseInt(parameters.get(4).getText());
+			   a.println(parameters.toString());
+			   ID = Integer.parseInt(parameters.get(0).getText());
 			   
 			   for(Element param: parameters)
 			   {	// it po parametrach
