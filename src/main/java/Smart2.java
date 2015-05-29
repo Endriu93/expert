@@ -52,6 +52,7 @@ public class Smart2 extends HttpServlet {
 		String content = getRequestContent(request);
 		
 		try {
+			if(db.connect == null) db.connect();
 			String query = createQueryFromXml(content);
 			response.getWriter().println(query);
 			response.getWriter().println(db.getSpecifiedPhones(query));

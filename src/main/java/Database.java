@@ -11,11 +11,16 @@ import org.jdom2.output.XMLOutputter;
 
 
 public class Database {
-	private Connection connect = null;
+	public Connection connect = null;
 	private Statement statement = null;
 	private java.sql.PreparedStatement preparedStatement = null;
 	private ResultSet resultSet = null;
 	
+	public void connect() throws SQLException
+	{
+		 connect = DriverManager.getConnection("jdbc:mysql://127.13.19.130:3306/expert","admincsPQAMd","KRjPCPMwYSY8");
+
+	}
 	public Database()
 	{
 		 // This will load the MySQL driver, each DB has its own driver
@@ -43,6 +48,7 @@ public class Database {
 	public void close() throws SQLException
 	{
 		connect.close();
+		connect = null;
 	}
 	public String getSpecifiedPhones(String query) throws SQLException
 	{
