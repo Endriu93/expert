@@ -55,6 +55,7 @@ public class Smart2 extends HttpServlet {
 			String query = createQueryFromXml(content);
 			response.getWriter().println(query);
 			response.getWriter().println(db.getSpecifiedPhones(query));
+			db.close();
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

@@ -40,6 +40,10 @@ public class Database {
 	      return DbToXML(resultSet);
 	      
 	}
+	public void close() throws SQLException
+	{
+		connect.close();
+	}
 	public String getSpecifiedPhones(String query) throws SQLException
 	{
 		  statement = connect.createStatement();
