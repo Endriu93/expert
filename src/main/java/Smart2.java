@@ -108,7 +108,24 @@ public class Smart2 extends HttpServlet {
 	private String addToQuery(String ParamName, String Value)
 	{
 		String out;
-		if(ParamName.equals("producent")) out = " Product_Name like "+Value; 
+		if(ParamName.equals("producent")) 
+			{
+				if(Value.equalsIgnoreCase("lg"))
+				out = " Product_Name like 'LG' ";
+				else 
+					if(Value.equalsIgnoreCase("nokia"))
+						out = " Product_Name like 'Nokia' ";
+					else 
+						if(Value.equalsIgnoreCase("samsung"))
+							out = " Product_Name like 'Samsung' ";else 
+								if(Value.equalsIgnoreCase("HTC"))
+									out = " Product_Name like 'HTC' ";else 
+										if(Value.equalsIgnoreCase("lenovo"))
+											out = " Product_Name like 'Lenovo' ";else 
+												if(Value.equalsIgnoreCase("sony"))
+													out = " Product_Name like 'Sony' ";
+												else out = " Cores > 0 ";
+			}
 		else
 		if(ParamName.equals("minscreensize")) out = " Display >= "+Value; 
 		else
