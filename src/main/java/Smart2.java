@@ -134,7 +134,8 @@ public class Smart2 extends HttpServlet {
 			}
 			ArrayList<String> ids = new ArrayList<String>();
 			Collections.sort(phonesList);
-			for(int i=0; i<3; ++i)
+			int iter = (3>ids.size() ? ids.size() : 3);
+			for(int i=0; i<iter; ++i)
 			{
 				ids.add(String.valueOf(phonesList.get(i).getID()));		
 			}
