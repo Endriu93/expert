@@ -5,7 +5,10 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,8 +57,12 @@ public class Smart2 extends HttpServlet {
 		try {
 			if(db.connect == null) db.connect();
 			String query = createQueryFromXml(content);
-			response.getWriter().println(query);
-			response.getWriter().println(db.getSpecifiedPhones(query));
+			String phonesXml = db.getSpecifiedPhones(query);
+			ArrayList<String> criteria = getCriteria(content);
+			ArrayList<String> Ids = getPhonesID(phonesXml, criteria);
+			String FinalQuery = addIDsToQuery(query,Ids);
+			response.getWriter().println(FinalQuery);
+			response.getWriter().println(db.getSpecifiedPhones(FinalQuery));
 			db.close();
 			
 		} catch (Exception e) {
@@ -63,6 +70,113 @@ public class Smart2 extends HttpServlet {
 			e.printStackTrace();
 			response.getWriter().println(e.getMessage());
 		}
+	}
+	/**
+	 * 
+	 * @param xml
+	 * @param criteria - tablica kryteriów słuzące do wybranioa 3 najlepszych telefonóœ
+	 * @return zwraca tablicę id 3 telefonów do wyświetlenia
+	 * @throws IOException 
+	 * @throws JDOMException 
+	 */
+	private ArrayList<String> getPhonesID(String xml, ArrayList<String> criteria) throws JDOMException, IOException
+	{
+		SAXBuilder builder = new SAXBuilder();
+		String ParamName;
+		ArrayList<Phone> phonesList = new ArrayList<Phone>();
+		int ID;
+		float value;
+		float sum=0;
+		
+	
+		InputStream stream = new ByteArrayInputStream(xml.getBytes("UTF-8"));
+		Document document = builder.build(stream);
+	 
+			Element rootNode = document.getRootElement();
+			List<Element> phones = rootNode.getChildren();
+			List<Element> parameters;
+	 
+			for (int i = 0; i < phones.size(); i++) {
+				// it po telefonach
+			   Element phone = (Element) phones.get(i);
+			   parameters = phone.getChildren();
+			   ID = Integer.parseInt(phone.getChild("ID").getText());
+			   
+			   for(Element param: parameters)
+			   {	// it po parametrach
+				   ParamName = param.getName();
+				   value = Float.parseFloat(param.getText());
+				   if(criteria.contains(ParamName))
+				   {
+					   if(ParamName.equals("Display")) sum+= Calculator.displayPoints(value);
+					   else
+						   if(ParamName.equals("Battery")) sum+= Calculator.batteryPoints(value);
+						   else
+							   if(ParamName.equals("Cores")) sum+= Calculator.coresPoints(value);else
+								   if(ParamName.equals("Processor")) sum+= Calculator.processorPoints(value);else
+									   if(ParamName.equals("Ram")) sum+= Calculator.ramPoints(value);else
+										   if(ParamName.equals("Storage")) sum+= Calculator.storagePoints(value);else
+											   if(ParamName.equals("Camera_Res")) sum+= Calculator.cameraPoints(value);
+
+				   }
+			   }
+			   phonesList.add(new Phone(ID, sum));
+			   sum = 0;
+			   
+			}
+			ArrayList<String> ids = new ArrayList<String>();
+			Collections.sort(phonesList);
+			for(int i=0; i<3; ++i)
+			{
+				ids.add(String.valueOf(phonesList.get(i).getID()));		
+			}
+			return ids;
+	}
+	/**
+	 * zwraca tablicę kryteriów w postaci takiej jak w bazie
+	 * @throws IOException 
+	 * @throws JDOMException 
+	 * 
+	 */
+	private ArrayList<String> getCriteria(String xml) throws JDOMException, IOException
+	{
+		SAXBuilder builder = new SAXBuilder();
+		String ParamName;
+		String value;
+		ArrayList<String> criteria = new ArrayList<String>();
+	
+		InputStream stream = new ByteArrayInputStream(xml.getBytes("UTF-8"));
+		Document document = builder.build(stream);
+	 
+			Element rootNode = document.getRootElement();
+			List list = rootNode.getChildren();
+	 
+			for (int i = 0; i < list.size(); i++) {
+				
+			   Element node = (Element) list.get(i);
+			   ParamName = node.getName();
+			   
+			   value = node.getText();
+			   if(ParamName.equals("kryterium1") || ParamName.equals("kryterium2") || ParamName.equals("kryterium3") )
+			   {
+				   if(value.equalsIgnoreCase("Rozmiar ekranu")) criteria.add("Display");
+				   else
+					   if(value.equalsIgnoreCase("pojemnosc baterii")) criteria.add("Battery");
+					   else
+						   if(value.equalsIgnoreCase("Liczba rdzeni procesora")) criteria.add("Cores");
+						   else
+							   if(value.equalsIgnoreCase("Predkosc taktowania")) criteria.add("Processor");
+							   else
+								   if(value.equalsIgnoreCase("Ilosc pamieci ram")) criteria.add("Ram");
+								   else
+									   if(value.equalsIgnoreCase("Rozdzielczosc aparatu")) criteria.add("Camera_Res");
+									   else
+										   if(value.equalsIgnoreCase("Ilosc pamieci wlasnej")) criteria.add("Storage");
+
+					   
+			   }
+			}
+			   return  criteria;
 	}
 	private String getRequestContent(HttpServletRequest request) throws IOException
 	{
@@ -73,6 +187,18 @@ public class Smart2 extends HttpServlet {
 	      jb.append(line);
 		  
 		return jb.toString();
+	}
+	private String addIDsToQuery(String query, ArrayList<String> ids)
+	{
+		StringBuilder b = new StringBuilder();
+		b.append(" and ");
+		for(String id : ids)
+		{
+			b.append(" ID = "+id);
+			b.append(" or ");
+		}
+		b.append(" Cores > 0 ");
+		return query+b.toString();
 	}
 	private String createQueryFromXml(String xml) throws JDOMException, IOException
 	{
