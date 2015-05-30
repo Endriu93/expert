@@ -66,23 +66,22 @@ function XMLWriter()
 
 
 function parseData(value){
-	//document.getElementById('myTextarea').value = value.match(/<phone>[\s\S]*?<\/phone>/g);
 	var array = value.match(/<phone>[\s\S]*?<\/phone>/g);
-	var len = array.length;
-	
-	if (len==0){
-		alert("Nie znaleziono telefonów spe³niaj±cych kryteria, sprawd¼ poprawno¶æ danych");
-		throw new Error('Abort');
+	if(array === null || array === undefined){
+		alert("Baza nie zawiera rezultatów spe³niaj±cych podane kryteria, sprawd¼ poprawno¶æ wprowadzonych danych");
 	}
-	
-	sessvars.strings = array;
-	window.location.href = "result.html";l
-
+	else{
+		sessvars.strings = array;
+		window.location.href = "result.html";
+	}
 }
 
 function process (form) {
-	var producent = "0";
-	producent = form.producent.value;
+	
+	var producent = form.producent.value;
+	if(producent==""){
+		producent = "0";
+	}
 	var minScreen = form.minscreensize.value;
 	var maxScreen = form.maxscreensize.value;
     var battery = form.batterysize.value;
@@ -333,7 +332,6 @@ function process (form) {
     {
 		//alert(xmlhttp.status);
 		if (xmlhttp.readyState==4 && xmlhttp.status==200){
-			//document.getElementById('myTextarea').value = xmlhttp.responseText;
 			parseData(xmlhttp.responseText);
 		}
 	}

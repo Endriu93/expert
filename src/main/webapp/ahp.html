@@ -243,9 +243,10 @@
 		
 			var tmp = sessvars.criteria;
 			var array = sessvars.strings;
-			//len = array.length;
-			//len = 2;
-			len = 3;
+			len = array.length;
+			var alt1 = array[0].match(/<Product_Name>[\s\S]*?<\/Product_Name>/g) + " " + array[0].match(/<Model>[\s\S]*?<\/Model>/g);
+			var alt2 = array[1].match(/<Product_Name>[\s\S]*?<\/Product_Name>/g) + " " + array[1].match(/<Model>[\s\S]*?<\/Model>/g);
+			
 			/* Naglowki */
 			document.getElementById("kryt1").innerHTML = tmp[0];
 			document.getElementById("kryt2").innerHTML = tmp[1];
@@ -260,8 +261,6 @@
 			document.getElementById("s6").innerHTML = tmp[1];
 			
 			if(len==2){
-				var alt1 = "LG G3";
-				var alt2 = "Samsung Galaxy S2";
 			
 				document.getElementById('kryterium1').innerHTML = "<div class=\"button-container\">"+"<BR><span id=\"1_1A\">"+ alt1 + "</span>"
 		+ "<input type=\"radio\" name=\"1_k1\" value=\"1\">1"
@@ -307,9 +306,7 @@
 				
 			}
 			else if(len==3){
-			var alt1 = "LG G3";
-			var alt2 = "Samsung Galaxy S2";
-			var alt3 = "One plus One";
+				var alt3 = array[2].match(/<Product_Name>[\s\S]*?<\/Product_Name>/g) + " " + array[2].match(/<Model>[\s\S]*?<\/Model>/g);
 			
 				document.getElementById('kryterium1').innerHTML = "<div class=\"button-container\">"+ "<BR><span  id=\"1_1A\">"+ alt1 + "</span>"
 		+ "<input type=\"radio\" name=\"1_k1\" value=\"1\">1"
@@ -439,6 +436,7 @@
 		
 		<div class="result-card">
 			<h2>Wyniki</h2>
+			<h3>Wyznaczone dla ka¿dej z alternatyw warto¶ci s± z zakresu 0-1.<br> Im wiêksza warto¶æ (bli¿ej 1) tym dana alternatywa jest lepsza.</h3>
 			<div id="container"><p><b><h3>Oceñ wszystkie pozycje a nastêpnie naci¶nij przycisk aby wygenerowaæ rezultat.</h3></b></p></div>
 		</div>
 	</FORM>
@@ -454,8 +452,9 @@ function toFixed(value, precision) {
 
 function testfun2(form) {
 	var array = sessvars.strings;
-	//len = array.length;
-	len = 3;
+	len = array.length;
+	var alt1 = array[0].match(/<Product_Name>[\s\S]*?<\/Product_Name>/g) + " " + array[0].match(/<Model>[\s\S]*?<\/Model>/g);
+	var alt2 = array[1].match(/<Product_Name>[\s\S]*?<\/Product_Name>/g) + " " + array[1].match(/<Model>[\s\S]*?<\/Model>/g);
 	
 	var r_is1 = document.getElementsByName('is1');
 	var r_is2 = document.getElementsByName('is2');
@@ -528,8 +527,6 @@ function testfun2(form) {
 	val_is3 = (total.subset(math.index(2,0))/sum1 + total.subset(math.index(2,1))/sum2 + total.subset(math.index(2,2))/sum3)/3.0
 		
 	if (len == 2){
-		var alt1 = "LG G3";
-		var alt2 = "Samsung Galaxy S2";
 		
 		var r_1_k1 = document.getElementsByName('1_k1');
 		var r_2_k1 = document.getElementsByName('2_k1');
@@ -651,9 +648,7 @@ function testfun2(form) {
 		
 	}
 	else if(len == 3){
-		var alt1 = "LG G3";
-		var alt2 = "Samsung Galaxy S2";
-		var alt3 = "One plus One";
+		var alt3 = array[2].match(/<Product_Name>[\s\S]*?<\/Product_Name>/g) + " " + array[2].match(/<Model>[\s\S]*?<\/Model>/g);
 	
 		var r_1_k1 = document.getElementsByName('1_k1');
 		var r_1_k2 = document.getElementsByName('1_k2');
