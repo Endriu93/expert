@@ -390,22 +390,22 @@ public class Smart2 extends HttpServlet {
 			else
 				if(ParamName.equals("android"))
 				{
-					if(Value.equals("1"))
-					out = " OS_Name like  'Android' ";
+					if(Value.equals("0"))
+					out = " OS_Name not like 'Android' ";
 					else out = " Cores > 0 ";
 				}
 				else
 					if(ParamName.equals("windowsphone"))
 					{
-						if(Value.equals("1"))
-						out = " OS_Name like  'W%' ";
+						if(Value.equals("0"))
+						out = " OS_Name not in not like 'W%' ";
 						else out = " Cores > 0 ";
 					}
 					else
 						if(ParamName.equals("ios"))
 						{
-							if(Value.equals("1"))
-							out = " OS_Name like  'iOS' ";
+							if(Value.equals("0"))
+							out = " OS_Name not like  'iOS' ";
 							else out = " Cores > 0 ";
 						}
 						else
