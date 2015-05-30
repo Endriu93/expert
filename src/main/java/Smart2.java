@@ -398,7 +398,7 @@ public class Smart2 extends HttpServlet {
 					if(ParamName.equals("windowsphone"))
 					{
 						if(Value.equals("0"))
-						out = " OS_Name not in not like 'W%' ";
+						out = " OS_Name not in not like 'Windows Phone' ";
 						else out = " Cores > 0 ";
 					}
 					else
