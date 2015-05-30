@@ -308,7 +308,7 @@ public class Smart2 extends HttpServlet {
 			b.append(id);
 			b.append(", ");
 		}
-		b.append("10000 )");
+		b.append("10000 ) order by Price desc");
 		return query+b.toString();
 	}
 	private String createQueryFromXml(String xml) throws JDOMException, IOException
