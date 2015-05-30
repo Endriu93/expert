@@ -194,6 +194,10 @@ public class Smart2 extends HttpServlet {
 				   }
 			   }
 			}   
+			a.println("CoresMin: "+Calculator.CoresMin+" CoresMax: "+Calculator.CoresMax);
+			a.println("procMin: "+Calculator.ProcessorMin+" procMax: "+Calculator.ProcessorMax);
+			a.println("StorMin: "+Calculator.StorageMin+" StorageMax: "+Calculator.StorageMax);
+
 			// obliczanie współczynnika dla każdego phona
 			for (int i = 0; i < phones.size(); i++) {
 				// it po telefonach
