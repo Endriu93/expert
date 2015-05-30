@@ -57,17 +57,22 @@ public class Smart2 extends HttpServlet {
 		
 		try {
 			if(db.connect == null) db.connect();
+			boolean valid = isXmlValid(content);
+			if(valid == false) response.getWriter().println(StringIfInvalid());
+			else
+			{
 			String query = createQueryFromXml(content);
 			String phonesXml = db.getSpecifiedPhones(query);
 			//response.getWriter().println(phonesXml); //REMOVE
 
 			ArrayList<String> criteria = getCriteria(content);
-			response.getWriter().println(criteria.toString()); //REMOVE
+			//response.getWriter().println(criteria.toString()); //REMOVE
 
 			ArrayList<String> Ids = getPhonesID(phonesXml, criteria,response.getWriter());
 			String FinalQuery = addIDsToQuery(query,Ids);
-			response.getWriter().println(FinalQuery); 
+		//	response.getWriter().println(FinalQuery); 
 			response.getWriter().println(db.getSpecifiedPhones(FinalQuery));
+			}
 			db.close();
 			
 		} catch (Exception e) {
@@ -75,6 +80,32 @@ public class Smart2 extends HttpServlet {
 			e.printStackTrace();
 			e.printStackTrace(response.getWriter());
 		}
+	}
+	
+	private String StringIfInvalid()
+	{
+		String a = "<xml>error</xml>";
+		return a;
+	}
+	private boolean isXmlValid(String xml) throws JDOMException, IOException
+	{
+		SAXBuilder builder = new SAXBuilder();
+		String ParamName;
+		ArrayList<Phone> phonesList = new ArrayList<Phone>();
+		int ID;
+		boolean var = true;
+		
+		InputStream stream = new ByteArrayInputStream(xml.getBytes("UTF-8"));
+		Document document = builder.build(stream);
+	 
+			Element rootNode = document.getRootElement();
+			List<Element> params = rootNode.getChildren();
+			for(Element parameter: params)
+			{
+				if(parameter.getText().trim().length()==0) var = false;
+			}
+			
+			return var;
 	}
 	/**
 	 * 
@@ -193,7 +224,7 @@ public class Smart2 extends HttpServlet {
 				   }
 			   }
 			   phonesList.add(new Phone(ID, sum));
-			   a.println("id: "+String.valueOf(ID)+" sum:"+String.valueOf(sum));
+			 //  a.println("id: "+String.valueOf(ID)+" sum:"+String.valueOf(sum));
 			   sum = 0;
 			   
 			}
