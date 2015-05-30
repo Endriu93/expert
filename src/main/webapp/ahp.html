@@ -1,0 +1,891 @@
+<HTML>
+<HEAD>
+<meta http-equiv="Content-type" content="text/html; charset=ISO-8859-2" />
+<TITLE>Badanie jakosciowe</TITLE>
+<link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
+<link rel="stylesheet" href="css/style.css">
+<script type="text/javascript" src="sessvars.js"></script>
+<script type="text/javascript" src="math.js"></script>
+
+</HEAD>
+<BODY onload="reset()">
+<SCRIPT LANGUAGE="JavaScript">
+	function reset(){
+			sessvars.cr1 = true;
+			sessvars.cr2 = true;
+			sessvars.cr3 = true;
+		
+			sessvars.k1_1 = true;
+			sessvars.k1_2 = true;
+			sessvars.k1_3 = true;
+			
+			sessvars.k2_1 = true;
+			sessvars.k2_2 = true;
+			sessvars.k2_3 = true;
+			
+			sessvars.k3_1 = true;
+			sessvars.k3_2 = true;
+			sessvars.k3_3 = true;
+	
+	}
+</SCRIPT>
+
+<div class="result-card">
+	<h1>AHP</h1><br>
+</div>
+
+<div class="result-card">
+	<h2>Instrukcja</h2><br>
+	<h3>Poniższy system stanowi tzw. Analityczny Proces Hierarchiczny (AHP). Jest to jedna z popularniejszych metod rozwiązywania problemów decyzyjnych
+	Aby uzyskać odpowiedź na zadane przez nas zagadnienie, musimy ocenić wszystkie warianty decyzyjne względem naszych kryteriów.
+	Porównań tych dokonuje się parami w oparciu o następującą skalę:<br><br>
+	1 - oba porównywane kryteria są równie ważne (istotne)<br>
+	3 - kryterium pierwsze jest nieznacznie ważniejsze od drugiego<br>
+	5 - kryterium pierwsze jest wyraźnie ważniejsze od drugiego<br>
+	7 - kryterium pierwsze jest zdecydowanie ważniejsze od drugiego<br>
+	9 - kryterium pierwsze jest bezwzględnie ważniejsze od drugiego<br>
+	Liczby parzyste od 2 do 8 stanowić mogą oceny pośrednie w przypadku braku zdecydowania decydenta.<br>
+	W przypadku gdy chcemy ocenić wariant znajdujący się po prawej stronie w stosunku do wariantu lewego, należy wcisnąć odpowiadający danemu wierszowi przycisk "Swap"
+	<br><br>
+	Po dokonaniu wszystkich ocen należy użyć znajdującego się na dole strony klawisza w celu wyświetlenia wyniku.
+	
+	
+	</h3>
+</div>
+
+<div class="result-card">
+<FORM NAME="myform" ACTION="" METHOD="GET">
+		<h2 align="center">Istotnosc kryteriow</h2>
+		<div class="button-container">
+		<BR><span id="s1"></span>
+		<input type="radio" name="is1" value="1">1
+		<input type="radio" name="is1" value="2">2
+		<input type="radio" name="is1" value="3">3
+		<input type="radio" name="is1" value="4">4
+		<input type="radio" name="is1" value="5">5
+		<input type="radio" name="is1" value="6">6
+		<input type="radio" name="is1" value="7">7
+		<input type="radio" name="is1" value="8">8
+		<input type="radio" name="is1" value="9">9
+		<span id="s2"></span>	<button type="button" name="login2"  value="Swap" class="swap-click" onClick="var tmp = document.getElementById('s1').innerHTML; 
+		document.getElementById('s1').innerHTML = document.getElementById('s2').innerHTML; 
+		document.getElementById('s2').innerHTML = tmp;
+		if(sessvars.cr1 == true){
+				sessvars.cr1 = false;
+		}
+		else{
+				sessvars.cr1 = true;
+		}">Swap</button>
+		</div>
+		<div class="button-container">
+		<BR><span id="s3"></span>
+		<input type="radio" name="is2" value="1">1
+		<input type="radio" name="is2" value="2">2
+		<input type="radio" name="is2" value="3">3
+		<input type="radio" name="is2" value="4">4
+		<input type="radio" name="is2" value="5">5
+		<input type="radio" name="is2" value="6">6
+		<input type="radio" name="is2" value="7">7
+		<input type="radio" name="is2" value="8">8
+		<input type="radio" name="is2" value="9">9
+		<span id="s4"></span> <button type="button" name="login2"  value="Swap" class="swap-click" onClick="var tmp = document.getElementById('s3').innerHTML; 
+		document.getElementById('s3').innerHTML = document.getElementById('s4').innerHTML; 
+		document.getElementById('s4').innerHTML = tmp;
+		if(sessvars.cr2 == true){
+				sessvars.cr2 = false;
+		}
+		else{
+				sessvars.cr2 = true;
+		}">Swap</button>
+		</div>
+		<div class="button-container">
+		<BR><span id="s5"></span>
+		<input type="radio" name="is3" value="1">1
+		<input type="radio" name="is3" value="2">2
+		<input type="radio" name="is3" value="3">3
+		<input type="radio" name="is3" value="4">4
+		<input type="radio" name="is3" value="5">5
+		<input type="radio" name="is3" value="6">6
+		<input type="radio" name="is3" value="7">7
+		<input type="radio" name="is3" value="8">8
+		<input type="radio" name="is3" value="9">9
+		<span id="s6"></span><button type="button" name="login2"  value="Swap" class="swap-click" onClick="var tmp = document.getElementById('s5').innerHTML; 
+		document.getElementById('s5').innerHTML = document.getElementById('s6').innerHTML; 
+		document.getElementById('s6').innerHTML = tmp;
+		if(sessvars.cr3 == true){
+				sessvars.cr3 = false;
+		}
+		else{
+				sessvars.cr3 = true;
+		}">Swap</button>
+		</div>
+		<h2 align="center" id="kryt1"></h2>
+		<div id="kryterium1" align="center"></div>
+		
+		<h2 align="center" id="kryt2"></h2>	
+		<div id="kryterium2" align="center"></div>
+		
+		<h2 align="center" id="kryt3"></h2>
+		<div id="kryterium3" align="center"></div>
+			
+		<SCRIPT LANGUAGE="JavaScript">
+			function fun1_k1(){
+				var tmp = document.getElementById('1_1A').innerHTML; 
+				document.getElementById('1_1A').innerHTML = document.getElementById('1_1B').innerHTML; 
+				document.getElementById('1_1B').innerHTML = tmp;
+				if(sessvars.k1_1 == true){
+					sessvars.k1_1 = false;
+				}
+				else{
+					sessvars.k1_1 = true;
+				}
+			}
+			
+			function fun1_k2(){
+				var tmp = document.getElementById('1_2A').innerHTML; 
+				document.getElementById('1_2A').innerHTML = document.getElementById('1_2B').innerHTML; 
+				document.getElementById('1_2B').innerHTML = tmp;
+				if(sessvars.k1_2 == true){
+					sessvars.k1_2 = false;
+				}
+				else{
+					sessvars.k1_2 = true;
+				}
+			}
+			
+			function fun1_k3(){
+				var tmp = document.getElementById('1_3A').innerHTML; 
+				document.getElementById('1_3A').innerHTML = document.getElementById('1_3B').innerHTML; 
+				document.getElementById('1_3B').innerHTML = tmp;
+				if(sessvars.k1_3 == true){
+					sessvars.k1_3 = false;
+				}
+				else{
+					sessvars.k1_3 = true;
+				}
+			}
+			
+			function fun2_k1(){
+				var tmp = document.getElementById('2_1A').innerHTML; 
+				document.getElementById('2_1A').innerHTML = document.getElementById('2_1B').innerHTML; 
+				document.getElementById('2_1B').innerHTML = tmp;
+				if(sessvars.k2_1 == true){
+					sessvars.k2_1 = false;
+				}
+				else{
+					sessvars.k2_1 = true;
+				}			
+			}
+			
+			function fun2_k2(){
+				var tmp = document.getElementById('2_2A').innerHTML; 
+				document.getElementById('2_2A').innerHTML = document.getElementById('2_2B').innerHTML; 
+				document.getElementById('2_2B').innerHTML = tmp;
+				if(sessvars.k2_2 == true){
+					sessvars.k2_2 = false;
+				}
+				else{
+					sessvars.k2_2 = true;
+				}			
+			}
+			
+			function fun2_k3(){
+				var tmp = document.getElementById('2_3A').innerHTML; 
+				document.getElementById('2_3A').innerHTML = document.getElementById('2_3B').innerHTML; 
+				document.getElementById('2_3B').innerHTML = tmp;
+				if(sessvars.k2_3 == true){
+					sessvars.k2_3 = false;
+				}
+				else{
+					sessvars.k2_3 = true;
+				}			
+			}
+			
+			function fun3_k1(){
+				var tmp = document.getElementById('3_1A').innerHTML; 
+				document.getElementById('3_1A').innerHTML = document.getElementById('3_1B').innerHTML; 
+				document.getElementById('3_1B').innerHTML = tmp;
+				if(sessvars.k3_1 == true){
+					sessvars.k3_1 = false;
+				}
+				else{
+					sessvars.k3_1 = true;
+				}			
+			}
+			
+			function fun3_k2(){
+				var tmp = document.getElementById('3_2A').innerHTML; 
+				document.getElementById('3_2A').innerHTML = document.getElementById('3_2B').innerHTML; 
+				document.getElementById('3_2B').innerHTML = tmp;
+				if(sessvars.k3_2 == true){
+					sessvars.k3_2 = false;
+				}
+				else{
+					sessvars.k3_2 = true;
+				}			
+			}
+			
+			function fun3_k3(){
+				var tmp = document.getElementById('3_3A').innerHTML; 
+				document.getElementById('3_3A').innerHTML = document.getElementById('3_3B').innerHTML; 
+				document.getElementById('3_3B').innerHTML = tmp;
+				if(sessvars.k3_3 == true){
+					sessvars.k3_3 = false;
+				}
+				else{
+					sessvars.k3_3 = true;
+				}			
+			}
+			
+		</SCRIPT>
+		
+		<SCRIPT LANGUAGE="JavaScript">
+		
+			var tmp = sessvars.criteria;
+			var array = sessvars.strings;
+			//len = array.length;
+			//len = 2;
+			len = 3;
+			/* Naglowki */
+			document.getElementById("kryt1").innerHTML = tmp[0];
+			document.getElementById("kryt2").innerHTML = tmp[1];
+			document.getElementById("kryt3").innerHTML = tmp[2];
+			
+			/* Blok istotnosci kryteriow */
+			document.getElementById("s1").innerHTML = tmp[0];
+			document.getElementById("s2").innerHTML = tmp[1];
+			document.getElementById("s3").innerHTML = tmp[0];
+			document.getElementById("s4").innerHTML = tmp[2];
+			document.getElementById("s5").innerHTML = tmp[2];
+			document.getElementById("s6").innerHTML = tmp[1];
+			
+			if(len==2){
+				var alt1 = "LG G3";
+				var alt2 = "Samsung Galaxy S2";
+			
+				document.getElementById('kryterium1').innerHTML = "<div class=\"button-container\">"+"<BR><span id=\"1_1A\">"+ alt1 + "</span>"
+		+ "<input type=\"radio\" name=\"1_k1\" value=\"1\">1"
+		+ "<input type=\"radio\" name=\"1_k1\" value=\"2\">2"
+		+ "<input type=\"radio\" name=\"1_k1\" value=\"3\">3"
+		+ "<input type=\"radio\" name=\"1_k1\" value=\"4\">4"
+		+ "<input type=\"radio\" name=\"1_k1\" value=\"5\">5"
+		+ "<input type=\"radio\" name=\"1_k1\" value=\"6\">6"
+		+ "<input type=\"radio\" name=\"1_k1\" value=\"7\">7"
+		+ "<input type=\"radio\" name=\"1_k1\" value=\"8\">8"
+		+ "<input type=\"radio\" name=\"1_k1\" value=\"9\">9"
+		+ "&nbsp<span id=\"1_1B\">" + alt2 +"</span>"
+		+ "<button type=\"button\" name=\"login2\"  value=\"Swap\"  class=\"swap-click\" onclick=\"fun1_k1()\">Swap</button>" + "</div>"
+				+ document.getElementById('kryterium1').innerHTML;	
+
+				document.getElementById('kryterium2').innerHTML = "<div class=\"button-container\">"+"<BR><span id=\"2_1A\">"+ alt1 + "</span>"
+		+ "<input type=\"radio\" name=\"2_k1\" value=\"1\">1"
+		+ "<input type=\"radio\" name=\"2_k1\" value=\"2\">2"
+		+ "<input type=\"radio\" name=\"2_k1\" value=\"3\">3"
+		+ "<input type=\"radio\" name=\"2_k1\" value=\"4\">4"
+		+ "<input type=\"radio\" name=\"2_k1\" value=\"5\">5"
+		+ "<input type=\"radio\" name=\"2_k1\" value=\"6\">6"
+		+ "<input type=\"radio\" name=\"2_k1\" value=\"7\">7"
+		+ "<input type=\"radio\" name=\"2_k1\" value=\"8\">8"
+		+ "<input type=\"radio\" name=\"2_k1\" value=\"9\">9"
+		+ "&nbsp<span id=\"2_1B\">" + alt2 +"</span>"
+		+ "<button type=\"button\" name=\"login2\"  value=\"Swap\" class=\"swap-click\" onclick=\"fun2_k1()\">Swap</button>" + "</div>"
+				+ document.getElementById('kryterium2').innerHTML;
+
+				document.getElementById('kryterium3').innerHTML = "<div class=\"button-container\">"+"<BR><span id=\"3_1A\">"+ alt1 + "</span>"
+		+ "<input type=\"radio\" name=\"3_k1\" value=\"1\">1"
+		+ "<input type=\"radio\" name=\"3_k1\" value=\"2\">2"
+		+ "<input type=\"radio\" name=\"3_k1\" value=\"3\">3"
+		+ "<input type=\"radio\" name=\"3_k1\" value=\"4\">4"
+		+ "<input type=\"radio\" name=\"3_k1\" value=\"5\">5"
+		+ "<input type=\"radio\" name=\"3_k1\" value=\"6\">6"
+		+ "<input type=\"radio\" name=\"3_k1\" value=\"7\">7"
+		+ "<input type=\"radio\" name=\"3_k1\" value=\"8\">8"
+		+ "<input type=\"radio\" name=\"3_k1\" value=\"9\">9"
+		+ "&nbsp<span id=\"3_1B\">" + alt2 +"</span>"
+		+ "<button type=\"button\" name=\"login2\"  value=\"Swap\" class=\"swap-click\" onclick=\"fun3_k1()\">Swap</button>" + "</div>"
+				+ document.getElementById('kryterium3').innerHTML;	
+				
+			}
+			else if(len==3){
+			var alt1 = "LG G3";
+			var alt2 = "Samsung Galaxy S2";
+			var alt3 = "One plus One";
+			
+				document.getElementById('kryterium1').innerHTML = "<div class=\"button-container\">"+ "<BR><span  id=\"1_1A\">"+ alt1 + "</span>"
+		+ "<input type=\"radio\" name=\"1_k1\" value=\"1\">1"
+		+ "<input type=\"radio\" name=\"1_k1\" value=\"2\">2"
+		+ "<input type=\"radio\" name=\"1_k1\" value=\"3\">3"
+		+ "<input type=\"radio\" name=\"1_k1\" value=\"4\">4"
+		+ "<input type=\"radio\" name=\"1_k1\" value=\"5\">5"
+		+ "<input type=\"radio\" name=\"1_k1\" value=\"6\">6"
+		+ "<input type=\"radio\" name=\"1_k1\" value=\"7\">7"
+		+ "<input type=\"radio\" name=\"1_k1\" value=\"8\">8"
+		+ "<input type=\"radio\" name=\"1_k1\" value=\"9\">9"
+		+ "&nbsp<span id=\"1_1B\">" + alt2 +"</span>"
+		+ "<button type=\"button\" name=\"login2\"  value=\"Swap\" class=\"swap-click\" onclick=\"fun1_k1()\">Swap</button>" + "</div>"
+		+ "<div class=\"button-container\">"+"<BR><span id=\"1_2A\">"+ alt3 + "</span>"
+		+ "<input type=\"radio\" name=\"1_k2\" value=\"1\">1"
+		+ "<input type=\"radio\" name=\"1_k2\" value=\"2\">2"
+		+ "<input type=\"radio\" name=\"1_k2\" value=\"3\">3"
+		+ "<input type=\"radio\" name=\"1_k2\" value=\"4\">4"
+		+ "<input type=\"radio\" name=\"1_k2\" value=\"5\">5"
+		+ "<input type=\"radio\" name=\"1_k2\" value=\"6\">6"
+		+ "<input type=\"radio\" name=\"1_k2\" value=\"7\">7"
+		+ "<input type=\"radio\" name=\"1_k2\" value=\"8\">8"
+		+ "<input type=\"radio\" name=\"1_k2\" value=\"9\">9"
+		+ "&nbsp<span id=\"1_2B\">" + alt1 +"</span>"
+		+ "<button type=\"button\" name=\"login2\"  value=\"Swap\" class=\"swap-click\" onclick=\"fun1_k2()\">Swap</button>" + "</div>"
+		+ "<div class=\"button-container\">"+"<BR><span id=\"1_3A\">"+ alt3 + "</span>"
+		+ "<input type=\"radio\" name=\"1_k3\" value=\"1\">1"
+		+ "<input type=\"radio\" name=\"1_k3\" value=\"2\">2"
+		+ "<input type=\"radio\" name=\"1_k3\" value=\"3\">3"
+		+ "<input type=\"radio\" name=\"1_k3\" value=\"4\">4"
+		+ "<input type=\"radio\" name=\"1_k3\" value=\"5\">5"
+		+ "<input type=\"radio\" name=\"1_k3\" value=\"6\">6"
+		+ "<input type=\"radio\" name=\"1_k3\" value=\"7\">7"
+		+ "<input type=\"radio\" name=\"1_k3\" value=\"8\">8"
+		+ "<input type=\"radio\" name=\"1_k3\" value=\"9\">9"
+		+ "&nbsp<span id=\"1_3B\">" + alt2+"</span>"
+		+ "<button type=\"button\" name=\"login2\"  value=\"Swap\" class=\"swap-click\" onclick=\"fun1_k3()\">Swap</button>" + "</div>"
+				+ document.getElementById('kryterium1').innerHTML;	
+
+				document.getElementById('kryterium2').innerHTML = "<div class=\"button-container\">"+"<BR><span id=\"2_1A\">"+ alt1 + "</span>"
+		+ "<input type=\"radio\" name=\"2_k1\" value=\"1\">1"
+		+ "<input type=\"radio\" name=\"2_k1\" value=\"2\">2"
+		+ "<input type=\"radio\" name=\"2_k1\" value=\"3\">3"
+		+ "<input type=\"radio\" name=\"2_k1\" value=\"4\">4"
+		+ "<input type=\"radio\" name=\"2_k1\" value=\"5\">5"
+		+ "<input type=\"radio\" name=\"2_k1\" value=\"6\">6"
+		+ "<input type=\"radio\" name=\"2_k1\" value=\"7\">7"
+		+ "<input type=\"radio\" name=\"2_k1\" value=\"8\">8"
+		+ "<input type=\"radio\" name=\"2_k1\" value=\"9\">9"
+		+ "&nbsp<span id=\"2_1B\">" + alt2 +"</span>"
+		+ "<button type=\"button\" name=\"login2\"  value=\"Swap\" class=\"swap-click\" onclick=\"fun2_k1()\">Swap</button>" + "</div>"
+		+ "<div class=\"button-container\">"+"<BR><span id=\"2_2A\">"+ alt3 + "</span>"
+		+ "<input type=\"radio\" name=\"2_k2\" value=\"1\">1"
+		+ "<input type=\"radio\" name=\"2_k2\" value=\"2\">2"
+		+ "<input type=\"radio\" name=\"2_k2\" value=\"3\">3"
+		+ "<input type=\"radio\" name=\"2_k2\" value=\"4\">4"
+		+ "<input type=\"radio\" name=\"2_k2\" value=\"5\">5"
+		+ "<input type=\"radio\" name=\"2_k2\" value=\"6\">6"
+		+ "<input type=\"radio\" name=\"2_k2\" value=\"7\">7"
+		+ "<input type=\"radio\" name=\"2_k2\" value=\"8\">8"
+		+ "<input type=\"radio\" name=\"2_k2\" value=\"9\">9"
+		+ "&nbsp<span id=\"2_2B\">" + alt1 +"</span>" 
+		+ "<button type=\"button\" name=\"login2\"  value=\"Swap\" class=\"swap-click\" onclick=\"fun2_k2()\">Swap</button>" + "</div>"
+		+ "<div class=\"button-container\">"+"<BR><span id=\"2_3A\">"+ alt3 + "</span>"
+		+ "<input type=\"radio\" name=\"2_k3\" value=\"1\">1"
+		+ "<input type=\"radio\" name=\"2_k3\" value=\"2\">2"
+		+ "<input type=\"radio\" name=\"2_k3\" value=\"3\">3"
+		+ "<input type=\"radio\" name=\"2_k3\" value=\"4\">4"
+		+ "<input type=\"radio\" name=\"2_k3\" value=\"5\">5"
+		+ "<input type=\"radio\" name=\"2_k3\" value=\"6\">6"
+		+ "<input type=\"radio\" name=\"2_k3\" value=\"7\">7"
+		+ "<input type=\"radio\" name=\"2_k3\" value=\"8\">8"
+		+ "<input type=\"radio\" name=\"2_k3\" value=\"9\">9"
+		+ "&nbsp<span id=\"2_3B\">" + alt2 +"</span>"
+		+ "<button type=\"button\" name=\"login2\"  value=\"Swap\" class=\"swap-click\" onclick=\"fun2_k3()\">Swap</button>" + "</div>"
+				+ document.getElementById('kryterium2').innerHTML;
+				
+			document.getElementById('kryterium3').innerHTML = "<div class=\"button-container\">"+"<BR><span id=\"3_1A\">"+ alt1 + "</span>"
+		+ "<input type=\"radio\" name=\"3_k1\" value=\"1\">1"
+		+ "<input type=\"radio\" name=\"3_k1\" value=\"2\">2"
+		+ "<input type=\"radio\" name=\"3_k1\" value=\"3\">3"
+		+ "<input type=\"radio\" name=\"3_k1\" value=\"4\">4"
+		+ "<input type=\"radio\" name=\"3_k1\" value=\"5\">5"
+		+ "<input type=\"radio\" name=\"3_k1\" value=\"6\">6"
+		+ "<input type=\"radio\" name=\"3_k1\" value=\"7\">7"
+		+ "<input type=\"radio\" name=\"3_k1\" value=\"8\">8"
+		+ "<input type=\"radio\" name=\"3_k1\" value=\"9\">9"
+		+ "&nbsp<span id=\"3_1B\">" + alt2 +"</span>"
+		+ "<button type=\"button\" name=\"login2\"  value=\"Swap\" class=\"swap-click\" onclick=\"fun3_k1()\">Swap</button>" + "</div>"
+		+ "<div class=\"button-container\">"+"<BR><span id=\"3_2A\">"+ alt3 + "</span>"
+		+ "<input type=\"radio\" name=\"3_k2\" value=\"1\">1"
+		+ "<input type=\"radio\" name=\"3_k2\" value=\"2\">2"
+		+ "<input type=\"radio\" name=\"3_k2\" value=\"3\">3"
+		+ "<input type=\"radio\" name=\"3_k2\" value=\"4\">4"
+		+ "<input type=\"radio\" name=\"3_k2\" value=\"5\">5"
+		+ "<input type=\"radio\" name=\"3_k2\" value=\"6\">6"
+		+ "<input type=\"radio\" name=\"3_k2\" value=\"7\">7"
+		+ "<input type=\"radio\" name=\"3_k2\" value=\"8\">8"
+		+ "<input type=\"radio\" name=\"3_k2\" value=\"9\">9"
+		+ "&nbsp<span id=\"3_2B\">" + alt1 +"</span>"
+		+ "<button type=\"button\" name=\"login2\"  value=\"Swap\" class=\"swap-click\" onclick=\"fun3_k2()\">Swap</button>" + "</div>"
+		+ "<div class=\"button-container\">"+"<BR><span id=\"3_3A\">"+ alt3 + "</span>"
+		+ "<input type=\"radio\" name=\"3_k3\" value=\"1\">1"
+		+ "<input type=\"radio\" name=\"3_k3\" value=\"2\">2"
+		+ "<input type=\"radio\" name=\"3_k3\" value=\"3\">3"
+		+ "<input type=\"radio\" name=\"3_k3\" value=\"4\">4"
+		+ "<input type=\"radio\" name=\"3_k3\" value=\"5\">5"
+		+ "<input type=\"radio\" name=\"3_k3\" value=\"6\">6"
+		+ "<input type=\"radio\" name=\"3_k3\" value=\"7\">7"
+		+ "<input type=\"radio\" name=\"3_k3\" value=\"8\">8"
+		+ "<input type=\"radio\" name=\"3_k3\" value=\"9\">9"
+		+ "&nbsp<span id=\"3_3B\">" + alt2 +"</span>"
+		+ "<button type=\"button\" name=\"login2\"  value=\"Swap\" class=\"swap-click\" onclick=\"fun3_k3()\">Swap</button>" + "</div>"
+				+ document.getElementById('kryterium3').innerHTML;					
+			
+			}
+			else{
+				alert("Ta sytuacja nie powinna wystapic");
+			}
+			
+		</SCRIPT>
+		
+		
+		
+		<BR><BR><INPUT TYPE="button" name="login" class="login login-submit" value="Wyświetl wynik" onClick="testfun2(this.form)">
+		</div>
+		
+		<div class="result-card">
+			<h2>Wyniki</h2>
+			<div id="container"><p><b><h3>Oceń wszystkie pozycje a następnie naciśnij przycisk aby wygenerować rezultat.</h3></b></p></div>
+		</div>
+	</FORM>
+</div>
+
+
+<SCRIPT LANGUAGE="JavaScript">
+
+function toFixed(value, precision) {
+    var power = Math.pow(10, precision || 0);
+    return String(Math.round(value * power) / power);
+}
+
+function testfun2(form) {
+	var array = sessvars.strings;
+	//len = array.length;
+	len = 3;
+	
+	var r_is1 = document.getElementsByName('is1');
+	var r_is2 = document.getElementsByName('is2');
+	var r_is3 = document.getElementsByName('is3');
+	
+	var f_k1 = false;
+	var f_k2 = false;
+	var f_k3 = false;
+	
+	var val_is1 = 0;
+	var val_is2 = 0;
+	var val_is3 = 0;
+	
+	/* istotnosci agrumentow */
+	for (var i = 0; i < r_is1.length; i++) {
+		if (r_is1[i].checked) {
+			val_is1 = parseFloat(r_is1[i].value);
+			f_k1 = true;
+			break;
+		}
+	}
+		
+	for (var i = 0; i < r_is2.length; i++) {
+		if (r_is2[i].checked) {
+			val_is2 = parseFloat(r_is2[i].value);
+			f_k2 = true;
+			break;
+		}
+	}
+	
+	for (var i = 0; i < r_is3.length; i++) {
+		if (r_is3[i].checked) {
+			val_is3 = parseFloat(r_is3[i].value);
+			f_k3 = true;
+			break;
+		}
+	}
+		
+	var total = math.matrix([[1.0,val_is1,val_is2], [1.0/val_is1,1.0,1.0/val_is3], [1.0/val_is2,val_is3,1.0]]);
+	
+	if(sessvars.cr1 == false){
+			total.subset(math.index(1,0),val_is1);
+			total.subset(math.index(0,1),1.0/val_is1);
+	}
+	
+	if(sessvars.cr2 == false){
+			total.subset(math.index(2,0),val_is2);
+			total.subset(math.index(0,2),1.0/val_is2);
+	}
+	
+	if(sessvars.cr3 == false){
+			total.subset(math.index(2,1),1.0/val_is3);
+			total.subset(math.index(1,2),val_is3);
+	}
+/*	
+		total.forEach(function (value, index, matrix) {
+			alert(value);
+		});
+	*/
+	var sum1 = 0;
+	var sum2 = 0;
+	var sum3 = 0;
+	sum1 = total.subset(math.index(0,0)) + total.subset(math.index(1,0)) + total.subset(math.index(2,0));
+	sum2 = total.subset(math.index(0,1)) + total.subset(math.index(1,1)) + total.subset(math.index(2,1));
+	sum3 = total.subset(math.index(0,2)) + total.subset(math.index(1,2)) + total.subset(math.index(2,2));
+	
+	/* Wspolczynniki istotnosci kryteriow */
+	val_is1 = (total.subset(math.index(0,0))/sum1 + total.subset(math.index(0,1))/sum2 + total.subset(math.index(0,2))/sum3)/3.0
+	val_is2 = (total.subset(math.index(1,0))/sum1 + total.subset(math.index(1,1))/sum2 + total.subset(math.index(1,2))/sum3)/3.0
+	val_is3 = (total.subset(math.index(2,0))/sum1 + total.subset(math.index(2,1))/sum2 + total.subset(math.index(2,2))/sum3)/3.0
+		
+	if (len == 2){
+		var alt1 = "LG G3";
+		var alt2 = "Samsung Galaxy S2";
+		
+		var r_1_k1 = document.getElementsByName('1_k1');
+		var r_2_k1 = document.getElementsByName('2_k1');
+		var r_3_k1 = document.getElementsByName('3_k1');
+		
+		var f_1_1 = false;
+		var f_2_1 = false;
+		var f_3_1 = false;
+
+		var val_r_1_k1 = 0;
+		var val_r_2_k1 = 0;
+		var val_r_3_k1 = 0;
+		
+		/*Kryt1*/
+		for (var i = 0; i < r_1_k1.length; i++) {
+			if (r_1_k1[i].checked) {
+				val_r_1_k1 = parseFloat(r_1_k1[i].value);
+				f_1_1 = true;
+				break;
+			}
+		}		
+	
+		/*Kryt2*/
+		for (var i = 0; i < r_2_k1.length; i++) {
+			if (r_2_k1[i].checked) {
+				val_r_2_k1 = parseFloat(r_2_k1[i].value);
+				f_2_1 = true;
+				break;
+			}
+		}	
+
+		/*Kryt3*/
+		for (var i = 0; i < r_3_k1.length; i++) {
+			if (r_3_k1[i].checked) {
+				val_r_3_k1 = parseFloat(r_3_k1[i].value);
+				f_3_1 = true;
+				break;
+			}
+		}
+		
+		var crit1 = math.matrix([[1.0,val_r_1_k1],[1.0/val_r_1_k1,1.0]]);
+		if(sessvars.k1_1 == false){
+			crit1.subset(math.index(1,0),val_r_1_k1);
+			crit1.subset(math.index(0,1),1.0/val_r_1_k1);
+		}
+		
+		var crit2 = math.matrix([[1.0,val_r_2_k1],[1.0/val_r_2_k1,1.0]]);
+		if(sessvars.k2_1 == false){
+			crit2.subset(math.index(1,0),val_r_2_k1);
+			crit2.subset(math.index(0,1),1.0/val_r_2_k1);
+		}		
+		
+		var crit3 = math.matrix([[1.0,val_r_3_k1],[1.0/val_r_3_k1,1.0]]);
+		if(sessvars.k3_1 == false){
+			crit3.subset(math.index(1,0),val_r_3_k1);
+			crit3.subset(math.index(0,1),1.0/val_r_3_k1);
+		}
+
+
+		/*Kryterium1*/
+		sum1 = crit1.subset(math.index(0,0)) + crit1.subset(math.index(1,0));
+		sum2 = crit1.subset(math.index(0,1)) + crit1.subset(math.index(1,1));
+		
+		var val_k1A = crit1.subset(math.index(0,0))/sum1;
+		var val_k1B = crit1.subset(math.index(1,0))/sum1;
+		
+		/*Kryterium2*/
+		sum1 = crit2.subset(math.index(0,0)) + crit2.subset(math.index(1,0));
+		sum2 = crit2.subset(math.index(0,1)) + crit2.subset(math.index(1,1));
+		
+		var val_k2A = crit2.subset(math.index(0,0))/sum1;
+		var val_k2B = crit2.subset(math.index(1,0))/sum1;
+		
+		/*Kryterium3*/
+		sum1 = crit3.subset(math.index(0,0)) + crit3.subset(math.index(1,0));
+		sum2 = crit3.subset(math.index(0,1)) + crit3.subset(math.index(1,1));
+		
+		var val_k3A = crit3.subset(math.index(0,0))/sum1;
+		var val_k3B = crit3.subset(math.index(1,0))/sum1;
+		
+	
+		/*Wynik produktu 1*/
+		var res1 = val_is1 * val_k1A + val_is2 * val_k2A + val_is3 * val_k3A;
+		//alert(res1);
+		
+		/*Wynik produktu 2*/
+		var res2 = val_is1 * val_k1B + val_is2 * val_k2B + val_is3 * val_k3B;
+		//alert(res2);
+		
+		var maxarr = [];
+		var maxarr_labels = [];
+		maxarr.push(res1); maxarr.push(res2)
+		maxarr_labels.push(alt1); maxarr_labels.push(alt2);
+		var max = maxarr[0];
+		var max2 = maxarr_labels[0];
+		for (var i=0; i<maxarr.length; i++){
+			if(maxarr[i]>max){
+				max = maxarr[i];
+				max2 = maxarr_labels[i];
+			}
+		}
+		if(f_k1 && f_k2 && f_k3 && f_1_1 && f_2_1 &&  f_3_1){
+			document.getElementById('container').innerHTML = 
+			+ "<h3 align=\"center\">" + alt1 + ": " + toFixed(res1,3) + "</br>"
+			+ alt2 + ": " +toFixed(res2,3) + "</br></h3>"
+			+ "<p><b><h3>Wybrany dla ciebie smartfon to: " + max2 +"</h3></b></p>"		
+			+ document.getElementById('container').innerHTML;
+		}
+		else{
+			document.getElementById('container').innerHTML = ""
+			+ "<p><b><h3>Nie wszystkie pozycje zostały ocenione, spróbuj ponownie!</h3></b></p>";
+		}
+		/*
+		crit3.forEach(function (value, index, matrix) {
+			alert(value);
+		});
+		*/
+
+		
+	}
+	else if(len == 3){
+		var alt1 = "LG G3";
+		var alt2 = "Samsung Galaxy S2";
+		var alt3 = "One plus One";
+	
+		var r_1_k1 = document.getElementsByName('1_k1');
+		var r_1_k2 = document.getElementsByName('1_k2');
+		var r_1_k3 = document.getElementsByName('1_k3');
+		
+		var r_2_k1 = document.getElementsByName('2_k1');
+		var r_2_k2 = document.getElementsByName('2_k2');
+		var r_2_k3 = document.getElementsByName('2_k3');
+		
+		var r_3_k1 = document.getElementsByName('3_k1');
+		var r_3_k2 = document.getElementsByName('3_k2');
+		var r_3_k3 = document.getElementsByName('3_k3');
+
+		var f_1_1 = false;
+		var f_1_2 = false;
+		var f_1_3 = false;
+		var f_2_1 = false;
+		var f_2_2 = false;
+		var f_2_3 = false;
+		var f_3_1 = false;
+		var f_3_2 = false;
+		var f_3_3 = false;
+		
+		
+		var val_r_1_k1 = 0;
+		var val_r_1_k2 = 0;
+		var val_r_1_k3 = 0;
+		
+		var val_r_2_k1 = 0;
+		var val_r_2_k2 = 0;
+		var val_r_2_k3 = 0;
+		
+		var val_r_3_k1 = 0;
+		var val_r_3_k2 = 0;
+		var val_r_3_k3 = 0;
+		
+		/*Kryt1*/
+		for (var i = 0; i < r_1_k1.length; i++) {
+			if (r_1_k1[i].checked) {
+				val_r_1_k1 = parseFloat(r_1_k1[i].value);
+				f_1_1 = true;
+				break;
+			}
+		}	
+
+		for (var i = 0; i < r_1_k2.length; i++) {
+			if (r_1_k2[i].checked) {
+				val_r_1_k2 = parseFloat(r_1_k2[i].value);
+				f_1_2 = true;
+				break;
+			}
+		}	
+
+		for (var i = 0; i < r_1_k3.length; i++) {
+			if (r_1_k3[i].checked) {
+				val_r_1_k3 = parseFloat(r_1_k3[i].value);
+				f_1_3 = true;
+				break;
+			}
+		}			
+	
+		/*Kryt2*/
+		for (var i = 0; i < r_2_k1.length; i++) {
+			if (r_2_k1[i].checked) {
+				val_r_2_k1 = parseFloat(r_2_k1[i].value);
+				f_2_1 = true;
+				break;
+			}
+		}
+
+		for (var i = 0; i < r_2_k2.length; i++) {
+			if (r_2_k2[i].checked) {
+				val_r_2_k2 = parseFloat(r_2_k2[i].value);
+				f_2_2 = true;
+				break;
+			}
+		}	
+
+		for (var i = 0; i < r_2_k3.length; i++) {
+			if (r_2_k3[i].checked) {
+				val_r_2_k3 = parseFloat(r_2_k3[i].value);
+				f_2_3 = true;
+				break;
+			}
+		}					
+
+		/*Kryt3*/
+		for (var i = 0; i < r_3_k1.length; i++) {
+			if (r_3_k1[i].checked) {
+				val_r_3_k1 = parseFloat(r_3_k1[i].value);
+				f_3_1 = true;
+				break;
+			}
+		}
+
+		for (var i = 0; i < r_3_k2.length; i++) {
+			if (r_3_k2[i].checked) {
+				val_r_3_k2 = parseFloat(r_3_k2[i].value);
+				f_3_2 = true;
+				break;
+			}
+		}	
+
+		for (var i = 0; i < r_3_k3.length; i++) {
+			if (r_3_k3[i].checked) {
+				val_r_3_k3 = parseFloat(r_3_k3[i].value);
+				f_3_3 = true;
+				break;
+			}
+		}
+
+		var crit1 = math.matrix([[1.0,val_r_1_k1,1.0/val_r_1_k2],[1.0/val_r_1_k1,1.0,1.0/val_r_1_k3],[val_r_1_k2,val_r_1_k3,1.0]]);
+		var crit2 = math.matrix([[1.0,val_r_2_k1,1.0/val_r_2_k2],[1.0/val_r_2_k1,1.0,1.0/val_r_2_k3],[val_r_2_k2,val_r_2_k3,1.0]]);
+		var crit3 = math.matrix([[1.0,val_r_3_k1,1.0/val_r_3_k2],[1.0/val_r_3_k1,1.0,1.0/val_r_3_k3],[val_r_3_k2,val_r_3_k3,1.0]]);
+		
+		if(sessvars.k1_1 == false){
+			crit1.subset(math.index(1,0),val_r_1_k1);
+			crit1.subset(math.index(0,1),1.0/val_r_1_k1);
+		}
+		if(sessvars.k1_2 == false){
+			crit1.subset(math.index(2,0),1.0/val_r_1_k2);
+			crit1.subset(math.index(0,2),val_r_1_k2);
+		}
+		if(sessvars.k1_3 == false){
+			crit1.subset(math.index(2,1),1.0/val_r_1_k3);
+			crit1.subset(math.index(1,2),val_r_1_k3);
+		}
+		
+		
+		if(sessvars.k2_1 == false){
+			crit2.subset(math.index(1,0),val_r_2_k1);
+			crit2.subset(math.index(0,1),1.0/val_r_2_k1);
+		}
+		if(sessvars.k2_2 == false){
+			crit2.subset(math.index(2,0),1.0/val_r_2_k2);
+			crit2.subset(math.index(0,2),val_r_2_k2);
+		}
+		if(sessvars.k2_3 == false){
+			crit2.subset(math.index(2,1),1.0/val_r_2_k3);
+			crit2.subset(math.index(1,2),val_r_2_k3);
+		}		
+		
+		if(sessvars.k3_1 == false){
+			crit3.subset(math.index(1,0),val_r_3_k1);
+			crit3.subset(math.index(0,1),1.0/val_r_3_k1);
+		}
+		if(sessvars.k3_2 == false){
+			crit3.subset(math.index(2,0),1.0/val_r_3_k2);
+			crit3.subset(math.index(0,2),val_r_3_k2);
+		}
+		if(sessvars.k3_3 == false){
+			crit3.subset(math.index(2,1),1.0/val_r_3_k3);
+			crit3.subset(math.index(1,2),val_r_3_k3);
+		}
+		
+		
+		/*Kryterium1*/
+		sum1 = crit1.subset(math.index(0,0)) + crit1.subset(math.index(1,0)) + crit1.subset(math.index(2,0));
+		sum2 = crit1.subset(math.index(0,1)) + crit1.subset(math.index(1,1)) + crit1.subset(math.index(2,1));
+		sum3 = crit1.subset(math.index(0,2)) + crit1.subset(math.index(1,2)) + crit1.subset(math.index(2,2));
+	
+		val_r_1_k1 = (crit1.subset(math.index(0,0))/sum1 + crit1.subset(math.index(0,1))/sum2 + crit1.subset(math.index(0,2))/sum3)/3.0
+		val_r_1_k2 = (crit1.subset(math.index(1,0))/sum1 + crit1.subset(math.index(1,1))/sum2 + crit1.subset(math.index(1,2))/sum3)/3.0
+		val_r_1_k3 = (crit1.subset(math.index(2,0))/sum1 + crit1.subset(math.index(2,1))/sum2 + crit1.subset(math.index(2,2))/sum3)/3.0
+		
+		/*Kryterium2*/
+		sum1 = crit2.subset(math.index(0,0)) + crit2.subset(math.index(1,0)) + crit2.subset(math.index(2,0));
+		sum2 = crit2.subset(math.index(0,1)) + crit2.subset(math.index(1,1)) + crit2.subset(math.index(2,1));
+		sum3 = crit2.subset(math.index(0,2)) + crit2.subset(math.index(1,2)) + crit2.subset(math.index(2,2));
+	
+		val_r_2_k1 = (crit2.subset(math.index(0,0))/sum1 + crit2.subset(math.index(0,1))/sum2 + crit2.subset(math.index(0,2))/sum3)/3.0
+		val_r_2_k2 = (crit2.subset(math.index(1,0))/sum1 + crit2.subset(math.index(1,1))/sum2 + crit2.subset(math.index(1,2))/sum3)/3.0
+		val_r_2_k3 = (crit2.subset(math.index(2,0))/sum1 + crit2.subset(math.index(2,1))/sum2 + crit2.subset(math.index(2,2))/sum3)/3.0
+		
+		/*Kryterium3*/
+		sum1 = crit3.subset(math.index(0,0)) + crit3.subset(math.index(1,0)) + crit3.subset(math.index(2,0));
+		sum2 = crit3.subset(math.index(0,1)) + crit3.subset(math.index(1,1)) + crit3.subset(math.index(2,1));
+		sum3 = crit3.subset(math.index(0,2)) + crit3.subset(math.index(1,2)) + crit3.subset(math.index(2,2));
+	
+		val_r_3_k1 = (crit3.subset(math.index(0,0))/sum1 + crit3.subset(math.index(0,1))/sum2 + crit3.subset(math.index(0,2))/sum3)/3.0
+		val_r_3_k2 = (crit3.subset(math.index(1,0))/sum1 + crit3.subset(math.index(1,1))/sum2 + crit3.subset(math.index(1,2))/sum3)/3.0
+		val_r_3_k3 = (crit3.subset(math.index(2,0))/sum1 + crit3.subset(math.index(2,1))/sum2 + crit3.subset(math.index(2,2))/sum3)/3.0
+		
+	
+		/*Wynik produktu 1*/
+		var res1 = val_is1 * val_r_1_k1 + val_is2 * val_r_2_k1 + val_is3 * val_r_3_k1;
+		//alert(res1);
+		
+		/*Wynik produktu 2*/
+		var res2 = val_is1 * val_r_1_k2 + val_is2 * val_r_2_k2 + val_is3 * val_r_3_k2;
+		//alert(res2);
+		
+		/*Wynik produktu 3*/
+		var res3 = val_is1 * val_r_1_k3 + val_is2 * val_r_2_k3 + val_is3 * val_r_3_k3;
+		//alert(res2);
+		
+		var maxarr = [];
+		var maxarr_labels = [];
+		maxarr.push(res1); maxarr.push(res2); maxarr.push(res3);
+		maxarr_labels.push(alt1); maxarr_labels.push(alt2); maxarr_labels.push(alt3);
+		var max = maxarr[0];
+		var max2 = maxarr_labels[0];
+		for (var i=0; i<maxarr.length; i++){
+			if(maxarr[i]>max){
+				max = maxarr[i];
+				max2 = maxarr_labels[i];
+			}
+		}
+		
+		if(f_k1 && f_k2 && f_k3 && f_1_1 && f_1_2 && f_1_3 && f_2_1 && f_2_2 && f_2_3 && f_3_1 && f_3_2 && f_3_3){
+			document.getElementById('container').innerHTML = ""
+			+ "<h3 align=\"center\">" + alt1 +": " + toFixed(res1,3) + "</br>"
+			+  alt2 + ": " + toFixed(res2,3) + "</br>" 
+			+  alt3 + ": " + toFixed(res3,3) + "</br></h3>" 
+			+ "<p><b><h3>Wybrany dla ciebie smartfon to: " + max2 +"</h3></b></p>";
+		}
+		else{
+			document.getElementById('container').innerHTML = ""
+			+ "<p><b><h3>Nie wszystkie pozycje zostały ocenione, spróbuj ponownie!</h3></b></p>";
+		}
+
+	}
+	else{
+		alert("Error");
+	}
+	
+	
+	
+}
+</SCRIPT>
+
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+</BODY>
+</HTML>
