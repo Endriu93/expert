@@ -19,6 +19,6 @@ public class Phone implements Comparable{
 	@Override
 	public int compareTo(Object other) {
 		// TODO Auto-generated method stub
-		return (new Float(this.Coefficient)).compareTo(((Phone)other).Coefficient);
+		return (new Float(((Phone)other).Coefficient).compareTo(new Float(this.Coefficient)));
 	}
 }

@@ -100,7 +100,6 @@ public class Smart2 extends HttpServlet {
 			Element rootNode = document.getRootElement();
 			List<Element> phones = rootNode.getChildren();
 			List<Element> parameters;
-			ArrayList<String> AllAvailableCriteria = new ArrayList<String>(); // dostępne kryteria
 			// zbieranie MinMax do kalkulatora
 			for (int i = 0; i < phones.size(); i++) {
 				// it po telefonach
@@ -207,10 +206,7 @@ public class Smart2 extends HttpServlet {
 			}
 			return ids;
 	}
-	private void setMinMaxCriteria( String xml)
-	{
-		
-	}
+	
 	/**
 
 	 * zwraca tablicę kryteriów w postaci takiej jak w bazie
