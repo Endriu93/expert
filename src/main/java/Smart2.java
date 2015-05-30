@@ -224,7 +224,7 @@ public class Smart2 extends HttpServlet {
 				   }
 			   }
 			   phonesList.add(new Phone(ID, sum));
-			 //  a.println("id: "+String.valueOf(ID)+" sum:"+String.valueOf(sum));
+			  a.println("id: "+String.valueOf(ID)+" sum:"+String.valueOf(sum));
 			   sum = 0;
 			   
 			}

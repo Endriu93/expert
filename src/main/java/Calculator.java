@@ -19,30 +19,44 @@ public class Calculator {
 	//public int Coeficient=100;	// współczynnik
 	public static float displayPoints(float num)
 	{
+		if(DisplayMax == DisplayMin) return 1;
+		else
 		return (num - DisplayMin)/(DisplayMax - DisplayMin);
 	}
 	public static float batteryPoints(float num)
 	{
-		return (num - BatteryMin)/(BatteryMax - DisplayMin);
+		if(BatteryMax == BatteryMin) return 1;
+		else
+		return (num - BatteryMin)/(BatteryMax - BatteryMin);
 	}
 	public static float coresPoints(float num)
 	{
-		return (num - CoresMin)/(CoresMax - DisplayMin);
+		if(CoresMax == CoresMin) return 1;
+		else
+		return (num - CoresMin)/(CoresMax - CoresMin);
 	}
 	public static float processorPoints(float num)
 	{
-		return (num - ProcessorMin)/(ProcessorMax - DisplayMin);
+		if(ProcessorMax == ProcessorMin) return 1;
+		else
+		return (num - ProcessorMin)/(ProcessorMax - ProcessorMin);
 	}
 	public static float cameraPoints(float num)
 	{
-		return (num - CameraMin)/(CameraMax - DisplayMin);
+		if(CameraMax == CameraMin) return 1;
+		else
+		return (num - CameraMin)/(CameraMax - CameraMin);
 	}
 	public static float ramPoints(float num)
 	{
+		if(RamMax == RamMin) return 1;
+		else
 		return (num - RamMin)/(RamMax - RamMin);
 	}
 	public static float storagePoints(float num)
 	{
+		if(StorageMax == StorageMin) return 1;
+		else
 		return (num - StorageMin)/(StorageMax - StorageMin);
 	}
 }
